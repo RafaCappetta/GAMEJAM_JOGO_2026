@@ -1,0 +1,10 @@
+/.godot/
+/.import/
+/export/
+/export.cfg
+/export.json
+*.import
+.vs/
+*.csproj
+*.sln
+*.user

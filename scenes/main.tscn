@@ -1,0 +1,48 @@
+[gd_scene format=3 uid="uid://cxa1oxf8y4eu1"]
+
+[sub_resource type="PhysicalSkyMaterial" id="PhysicalSkyMaterial_7p757"]
+
+[sub_resource type="Sky" id="Sky_7p757"]
+sky_material = SubResource("PhysicalSkyMaterial_7p757")
+
+[sub_resource type="Environment" id="Environment_eav63"]
+background_mode = 2
+background_energy_multiplier = 4.63
+sky = SubResource("Sky_7p757")
+sky_custom_fov = 7.4
+ambient_light_source = 2
+ambient_light_color = Color(0.24817145, 0.01054824, 0.23810428, 1)
+ambient_light_energy = 9.41
+
+[sub_resource type="Compositor" id="Compositor_sfylq"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_sgp6g"]
+size = Vector3(1, 1.298706, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_sfylq"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_eav63"]
+
+[node name="Node3D" type="Node3D" unique_id=1261093005]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=111330229]
+environment = SubResource("Environment_eav63")
+compositor = SubResource("Compositor_sfylq")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=33541906]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.8810377, 3.4619346)
+light_color = Color(0.58229625, 0.10879368, 1, 1)
+light_energy = 7.295
+light_specular = 4.802
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="." unique_id=584047872]
+transform = Transform3D(1.522068, 0, 0, 0, 2.0265727, 0, 0, 0, 1.2103289, -1.9778788, 1.1940408, -1.7893653)
+mesh = SubResource("BoxMesh_sgp6g")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1919388892]
+transform = Transform3D(0.917268, 0, 0, 0, 3.1187112, 0, 0, 0, 0.917268, 0, 1.4815702, 0)
+mesh = SubResource("BoxMesh_sfylq")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="." unique_id=73198377]
+transform = Transform3D(0.17055258, 0, 0, 0, 0.19352983, 0, 0, 0, 0.20969127, 0.0042013377, 3.184516, 0)
+mesh = SubResource("CapsuleMesh_eav63")
