@@ -1,27 +1,32 @@
 [gd_scene format=3 uid="uid://cxa1oxf8y4eu1"]
 
-[sub_resource type="PhysicalSkyMaterial" id="PhysicalSkyMaterial_7p757"]
+[ext_resource type="Shader" uid="uid://ok3u0sv6fbkm" path="res://resources/sky.gdshader" id="1_o5qli"]
+[ext_resource type="PackedScene" uid="uid://bs72ogkvdd7d6" path="res://addons/proto_controller/proto_controller.tscn" id="2_0wfyh"]
 
-[sub_resource type="Sky" id="Sky_7p757"]
-sky_material = SubResource("PhysicalSkyMaterial_7p757")
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_bw43p"]
+shader = ExtResource("1_o5qli")
+shader_parameter/sky_color = Color(0.26, 0, 0.19933327, 1)
+shader_parameter/line_color = Color(0.19600001, 0.19600001, 0.4, 1)
+shader_parameter/line_distance = 15.22000071969012
+shader_parameter/line_thickness = 2.0
+
+[sub_resource type="Sky" id="Sky_4cdbh"]
+sky_material = SubResource("ShaderMaterial_bw43p")
 
 [sub_resource type="Environment" id="Environment_eav63"]
 background_mode = 2
-background_energy_multiplier = 4.63
-sky = SubResource("Sky_7p757")
+sky = SubResource("Sky_4cdbh")
 sky_custom_fov = 7.4
-ambient_light_source = 2
-ambient_light_color = Color(0.24817145, 0.01054824, 0.23810428, 1)
+ambient_light_source = 1
+ambient_light_color = Color(0.10411224, 0.08889131, 0.22857921, 1)
 ambient_light_energy = 9.41
 
 [sub_resource type="Compositor" id="Compositor_sfylq"]
 
-[sub_resource type="BoxMesh" id="BoxMesh_sgp6g"]
-size = Vector3(1, 1.298706, 1)
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_o5qli"]
 
-[sub_resource type="BoxMesh" id="BoxMesh_sfylq"]
-
-[sub_resource type="CapsuleMesh" id="CapsuleMesh_eav63"]
+[sub_resource type="PlaneMesh" id="PlaneMesh_eav63"]
+material = SubResource("StandardMaterial3D_o5qli")
 
 [node name="Node3D" type="Node3D" unique_id=1261093005]
 
@@ -30,19 +35,33 @@ environment = SubResource("Environment_eav63")
 compositor = SubResource("Compositor_sfylq")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=33541906]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.8810377, 3.4619346)
-light_color = Color(0.58229625, 0.10879368, 1, 1)
-light_energy = 7.295
+transform = Transform3D(0.9502759, -5.370385e-09, 0.31140924, -0.2861395, 0.3945987, 0.87316453, -0.122881696, -0.9188537, 0.37497762, 0, 3.8810377, 3.4619346)
+light_energy = 0.525
 light_specular = 4.802
+shadow_enabled = true
 
-[node name="MeshInstance3D2" type="MeshInstance3D" parent="." unique_id=584047872]
-transform = Transform3D(1.522068, 0, 0, 0, 2.0265727, 0, 0, 0, 1.2103289, -1.9778788, 1.1940408, -1.7893653)
-mesh = SubResource("BoxMesh_sgp6g")
+[node name="MeshInstance3D4" type="MeshInstance3D" parent="." unique_id=460294534]
+transform = Transform3D(34.172585, 0, 0, 0, 1, 0, 0, 0, 27.40657, 0, 0, 0)
+mesh = SubResource("PlaneMesh_eav63")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1919388892]
-transform = Transform3D(0.917268, 0, 0, 0, 3.1187112, 0, 0, 0, 0.917268, 0, 1.4815702, 0)
-mesh = SubResource("BoxMesh_sfylq")
+[node name="CSGBox3D3" type="CSGBox3D" parent="." unique_id=1947101981]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.648961, 9.300138, -1.6739368)
+use_collision = true
+size = Vector3(6, 18, 6)
 
-[node name="MeshInstance3D3" type="MeshInstance3D" parent="." unique_id=73198377]
-transform = Transform3D(0.17055258, 0, 0, 0, 0.19352983, 0, 0, 0, 0.20969127, 0.0042013377, 3.184516, 0)
-mesh = SubResource("CapsuleMesh_eav63")
+[node name="CSGBox3D2" type="CSGBox3D" parent="." unique_id=604469449]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.17552, 7.400069, -4.8369684)
+use_collision = true
+size = Vector3(6, 15, 6)
+
+[node name="CSGBox3D4" type="CSGBox3D" parent="." unique_id=1637222746]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.351039, 9.300138, 13.326063)
+use_collision = true
+size = Vector3(6, 18, 6)
+
+[node name="CSGBox3D" type="CSGBox3D" parent="." unique_id=840181182]
+transform = Transform3D(7.15, 0, 0, 0, 1.1, 0, 0, 0, 50.05, 0, -0.3990159, 0)
+use_collision = true
+
+[node name="ProtoController" parent="." unique_id=1341952371 instance=ExtResource("2_0wfyh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 15, -5)
