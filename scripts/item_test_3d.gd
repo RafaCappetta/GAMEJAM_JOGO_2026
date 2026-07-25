@@ -10,4 +10,6 @@ func _process(delta: float) -> void:
 	rotate_y(0.01)
 
 func _on_body_entered(body: Node3D) -> void:
+	if body.is_in_group("Player"):
+		body.eletric_punch = true
 	queue_free()
