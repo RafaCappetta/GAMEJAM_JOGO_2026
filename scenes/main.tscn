@@ -1,5 +1,6 @@
 [gd_scene format=3 uid="uid://cxa1oxf8y4eu1"]
 
+[ext_resource type="Script" uid="uid://c3gwe4kot4sym" path="res://scenes/main.gd" id="1_choun"]
 [ext_resource type="Texture2D" uid="uid://buvb5h1r4kytm" path="res://assets/buildings/lines-traffic-paved-roads-background.jpg" id="1_tefeu"]
 [ext_resource type="PackedScene" uid="uid://c5adiqgkhro40" path="res://scenes/player.tscn" id="2_0wfyh"]
 [ext_resource type="PackedScene" uid="uid://fvbgmpt6ee3x" path="res://assets/buildings/apartament.glb" id="4_tefeu"]
@@ -9,6 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://b8soqu0w0ap6f" path="res://assets/buildings/Modern House_05_blend.glb" id="7_o6xl0"]
 [ext_resource type="PackedScene" uid="uid://c3r73pm50e15g" path="res://scenes/car.tscn" id="9_choun"]
 [ext_resource type="Script" uid="uid://bjxnlhsjwy4xf" path="res://scenes/car_spawner.gd" id="10_ya4ey"]
+[ext_resource type="PackedScene" uid="uid://dveftpj2ytq0" path="res://scenes/pause_menu.tscn" id="11_ya4ey"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_o6xl0"]
 sky_top_color = Color(0.36991724, 0.3687137, 0.867025, 1)
@@ -55,7 +57,8 @@ size = Vector3(0.86083984, 0.9774475, 1)
 [sub_resource type="BoxShape3D" id="BoxShape3D_tbgi4"]
 size = Vector3(0.11388397, 0.5109253, 0.13609123)
 
-[node name="Node3D" type="Node3D" unique_id=1261093005]
+[node name="Main" type="Node3D" unique_id=1261093005]
+script = ExtResource("1_choun")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=111330229]
 unique_name_in_owner = true
@@ -154,3 +157,7 @@ autostart = true
 
 [node name="large_building" parent="." unique_id=174640061 instance=ExtResource("6_tefeu")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 86.39303, 13.001766, -91.63115)
+
+[node name="Pause_menu" parent="." unique_id=677972992 instance=ExtResource("11_ya4ey")]
+unique_name_in_owner = true
+visible = false

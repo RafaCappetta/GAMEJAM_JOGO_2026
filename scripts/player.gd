@@ -5,10 +5,13 @@ extends CharacterBody3D
 #DASH - OK
 #MOVIMENTO DA CABEÇA - OK
 #FOV - OK
-#VIDA - OK (Ainda falta perder vida com dano)
+#VIDA - OK
+# DAR DANO - OK
 #CORRIDA NA PAREDE
 
 var life = 100
+
+var punch_damage = 30
 
 const SPEED = 5.0
 const RUN_SPEED = 7.5
@@ -56,6 +59,8 @@ func _process(delta: float) -> void:
 	else:
 		%screen_color.color.a = 0
 		%sprite.frame = 0
+
+	%life.text = "%d" % life
 	
 
 func _physics_process(delta: float) -> void:
@@ -90,7 +95,7 @@ func _physics_process(delta: float) -> void:
 		
 	if Input.is_action_just_pressed("soco") and eletric_punch:
 		%soco_hitbox.global_transform.basis = %camera.global_transform.basis
-		%soco_hitbox.show()
+		%soco_hitbox.monitoring = true
 		%soco_timer.start()
 		%animacao.play("soco")
 		eletric_punch = false
@@ -119,8 +124,16 @@ func head_bobbing(time_bob):
 	pos.x = cos(time_bob * BOB_FREQUENCY / 2) * BOB_AMPLITUDE
 	return pos
 
+func get_hit(damage, dir, knockback):
+	life -= damage
+	velocity += dir * knockback
+
 func _on_dash_cooldown_timeout() -> void:
 	can_dash = true
 
 func _on_soco_timer_timeout() -> void:
-	%soco_hitbox.hide()
+	%soco_hitbox.monitoring = false
+
+func _on_soco_hitbox_body_entered(body: Node3D) -> void:
+	if body.is_in_group("Enemy"):
+		body.get_hit(punch_damage)
