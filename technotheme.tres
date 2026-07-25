@@ -1,3 +1,39 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:961186a94ad4d718ce06f4531e48b0a06fae6ecf69350bdc11829e59a767c8e7
-size 1403
+[gd_resource type="Theme" format=3 uid="uid://ok5imgbm3w6v"]
+
+[ext_resource type="Texture2D" uid="uid://bh63d4mvn36je" path="res://assets/images/Botao.png" id="1_yeil8"]
+[ext_resource type="Texture2D" uid="uid://ni6ghsthshsv" path="res://assets/images/Botao_pressed.png" id="2_utcsy"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_yeil8"]
+texture = ExtResource("1_yeil8")
+texture_margin_left = 2.0
+texture_margin_top = 2.0
+texture_margin_right = 2.0
+texture_margin_bottom = 2.0
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 1
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_3abau"]
+texture = ExtResource("1_yeil8")
+texture_margin_left = 2.0
+texture_margin_top = 2.0
+texture_margin_right = 2.0
+texture_margin_bottom = 2.0
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 1
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_utcsy"]
+texture = ExtResource("2_utcsy")
+texture_margin_left = 2.0
+texture_margin_top = 2.0
+texture_margin_right = 2.0
+texture_margin_bottom = 2.0
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 1
+
+[resource]
+Button/colors/font_color = Color(0, 0, 0, 1)
+Button/colors/font_hover_color = Color(0, 0, 0, 1)
+Button/colors/font_pressed_color = Color(0, 0, 0, 1)
+Button/styles/hover = SubResource("StyleBoxTexture_yeil8")
+Button/styles/normal = SubResource("StyleBoxTexture_3abau")
+Button/styles/pressed = SubResource("StyleBoxTexture_utcsy")
