@@ -1,12 +1,12 @@
 [gd_scene format=3 uid="uid://cxa1oxf8y4eu1"]
 
-[ext_resource type="Texture2D" uid="uid://c6xlxkile067n" path="res://assets/buildings/lines-traffic-paved-roads-background.jpg" id="1_tefeu"]
+[ext_resource type="Texture2D" uid="uid://buvb5h1r4kytm" path="res://assets/buildings/lines-traffic-paved-roads-background.jpg" id="1_tefeu"]
 [ext_resource type="PackedScene" uid="uid://c5adiqgkhro40" path="res://scenes/player.tscn" id="2_0wfyh"]
-[ext_resource type="PackedScene" uid="uid://c3tkarpeaw6fo" path="res://assets/buildings/apartament.glb" id="4_tefeu"]
-[ext_resource type="PackedScene" uid="uid://bt00m6264x0qf" path="res://assets/buildings/building.glb" id="5_o6xl0"]
-[ext_resource type="PackedScene" uid="uid://cawgoie2v54s6" path="res://assets/buildings/large_building.glb" id="6_tefeu"]
+[ext_resource type="PackedScene" uid="uid://fvbgmpt6ee3x" path="res://assets/buildings/apartament.glb" id="4_tefeu"]
+[ext_resource type="PackedScene" uid="uid://cadvk2b2w0jjl" path="res://assets/buildings/building.glb" id="5_o6xl0"]
+[ext_resource type="PackedScene" uid="uid://bfhvmvg2rf0pl" path="res://assets/buildings/large_building.glb" id="6_tefeu"]
 [ext_resource type="PackedScene" uid="uid://2ut2r6jtuiki" path="res://scenes/Heli.tscn" id="7_85g3d"]
-[ext_resource type="PackedScene" uid="uid://civ2cncjrirgm" path="res://assets/buildings/Modern House_05_blend.glb" id="7_o6xl0"]
+[ext_resource type="PackedScene" uid="uid://b8soqu0w0ap6f" path="res://assets/buildings/Modern House_05_blend.glb" id="7_o6xl0"]
 [ext_resource type="PackedScene" uid="uid://c3r73pm50e15g" path="res://scenes/car.tscn" id="9_choun"]
 [ext_resource type="Script" uid="uid://bjxnlhsjwy4xf" path="res://scenes/car_spawner.gd" id="10_ya4ey"]
 
@@ -133,7 +133,7 @@ shape = SubResource("BoxShape3D_tbgi4")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 29.35152, 59.54318, 47.44201)
 
 [node name="Modern House_05_blend" parent="." unique_id=233799389 instance=ExtResource("7_o6xl0")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -52.222157, -0.499833, 77.35071)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 624.48315, 74.25929, 633.0834)
 
 [node name="apartament" parent="." unique_id=2016942865 instance=ExtResource("4_tefeu")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16.00277, 1.0016301, 127.18297)
