@@ -5,7 +5,10 @@ extends CharacterBody3D
 #DASH - OK
 #MOVIMENTO DA CABEÇA - OK
 #FOV - OK
+#VIDA - OK (Ainda falta perder vida com dano)
 #CORRIDA NA PAREDE
+
+var life = 100
 
 const SPEED = 5.0
 const RUN_SPEED = 7.5
@@ -39,6 +42,18 @@ func _unhandled_input(event: InputEvent) -> void:
 		head.rotate_y(-event.relative.x * CAM_SENSITIVITY)
 		%camera.rotate_x(-event.relative.y * CAM_SENSITIVITY)
 		%camera.rotation.x = clamp(%camera.rotation.x, deg_to_rad(-60), deg_to_rad(60))
+		
+func _process(delta: float) -> void:
+	if life <= 25:
+		%screen_color.color.a = 0.15
+		%sprite.frame = 2
+	elif life <= 50:
+		%screen_color.color.a = 0.075
+		%sprite.frame = 1
+	else:
+		%screen_color.color.a = 0
+		%sprite.frame = 0
+	
 
 func _physics_process(delta: float) -> void:
 
@@ -71,6 +86,9 @@ func _physics_process(delta: float) -> void:
 		can_dash = false
 		
 	if Input.is_action_just_pressed("soco"):
+		%soco_hitbox.global_transform.basis = %camera.global_transform.basis
+		%soco_hitbox.show()
+		%soco_timer.start()
 		%animacao.play("soco")
 
 	var input_dir := Input.get_vector("left", "right", "up", "down")
@@ -99,3 +117,6 @@ func head_bobbing(time_bob):
 
 func _on_dash_cooldown_timeout() -> void:
 	can_dash = true
+
+func _on_soco_timer_timeout() -> void:
+	%soco_hitbox.hide()
