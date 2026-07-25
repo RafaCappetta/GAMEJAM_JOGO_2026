@@ -124,9 +124,10 @@ func head_bobbing(time_bob):
 	pos.x = cos(time_bob * BOB_FREQUENCY / 2) * BOB_AMPLITUDE
 	return pos
 
-func get_hit(damage, dir, knockback):
+func get_hit(damage):
 	life -= damage
-	velocity += dir * knockback
+	if life <= 0:
+		get_tree().change_scene_to_file("res://scenes/gameover.tscn")
 
 func _on_dash_cooldown_timeout() -> void:
 	can_dash = true

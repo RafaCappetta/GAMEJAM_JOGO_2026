@@ -4,9 +4,8 @@ extends CharacterBody3D
 
 var player = null
 
-@export var speed = 3.0
-@export var damage = 10
-var knockback = 70
+@export var speed = 5
+@export var damage = 50
 var can_attack = true
 
 @export var player_path : NodePath
@@ -32,10 +31,7 @@ func get_hit(damage):
 
 func _on_gps_target_reached() -> void:
 	if can_attack:
-		var dir = global_position.direction_to(player.global_position)
-		dir.y = 0
-		dir = dir.normalized()
-		player.get_hit(damage, dir, knockback)
+		player.get_hit(damage)
 		can_attack = false
 		%atk_cooldown.start()
 
