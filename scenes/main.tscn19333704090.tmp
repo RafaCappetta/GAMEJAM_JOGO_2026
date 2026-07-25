@@ -1,0 +1,103 @@
+[gd_scene format=3 uid="uid://cxa1oxf8y4eu1"]
+
+[ext_resource type="Shader" uid="uid://ok3u0sv6fbkm" path="res://resources/sky.gdshader" id="1_o5qli"]
+[ext_resource type="PackedScene" uid="uid://c5adiqgkhro40" path="res://scenes/player.tscn" id="2_0wfyh"]
+[ext_resource type="PackedScene" uid="uid://bqowtmavfavm8" path="res://assets/free_-_sm_simplebuilding_1a_-_public_domain/scene.gltf" id="3_sugp2"]
+[ext_resource type="PackedScene" uid="uid://c1be6owuhc2hx" path="res://assets/apartament.glb" id="4_tefeu"]
+[ext_resource type="PackedScene" uid="uid://da6antb7xbf70" path="res://assets/building2.glb" id="5_o6xl0"]
+[ext_resource type="PackedScene" uid="uid://c6r2a28qigfuh" path="res://assets/building.glb" id="6_tipki"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_sugp2"]
+shader = ExtResource("1_o5qli")
+shader_parameter/sky_color = Color(0, 0, 0, 1)
+shader_parameter/line_color = Color(0, 1, 1, 1)
+shader_parameter/line_distance = 3.19700014859762
+shader_parameter/line_thickness = 0.005
+shader_parameter/camera_position = Vector3(0, 0, 0)
+shader_parameter/parallax_speed = 0.05
+
+[sub_resource type="Sky" id="Sky_4cdbh"]
+sky_material = SubResource("ShaderMaterial_sugp2")
+
+[sub_resource type="Environment" id="Environment_eav63"]
+background_mode = 2
+background_energy_multiplier = 4.63
+sky = SubResource("Sky_4cdbh")
+sky_custom_fov = 7.4
+ambient_light_source = 1
+ambient_light_color = Color(0.10411224, 0.08889131, 0.22857921, 1)
+ambient_light_energy = 9.41
+
+[sub_resource type="Compositor" id="Compositor_sfylq"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_sugp2"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0wfyh"]
+albedo_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jyhfs"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_wvhbo"]
+size = Vector3(19.546753, 45.601868, 30)
+
+[node name="Node3D" type="Node3D" unique_id=1261093005]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=111330229]
+unique_name_in_owner = true
+environment = SubResource("Environment_eav63")
+compositor = SubResource("Compositor_sfylq")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=33541906]
+transform = Transform3D(0.9502759, -5.370385e-09, 0.31140924, -0.2861395, 0.3945987, 0.87316453, -0.122881696, -0.9188537, 0.37497762, 0, 3.8810377, 3.4619346)
+light_energy = 0.525
+light_specular = 4.802
+
+[node name="MeshInstance3D4" type="CSGBox3D" parent="." unique_id=392593160]
+transform = Transform3D(34.172585, 0, 0, 0, 1, 0, 0, 0, 27.40657, 0, -1, 5)
+use_collision = true
+size = Vector3(14, 1, 20)
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="." unique_id=1947101981]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.648961, 8.300138, -1.6739368)
+use_collision = true
+size = Vector3(6, 18, 6)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="." unique_id=604469449]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.17552, 6.400069, -4.8369684)
+use_collision = true
+size = Vector3(6, 15, 6)
+material = SubResource("StandardMaterial3D_sugp2")
+
+[node name="CSGBox3D4" type="CSGBox3D" parent="." unique_id=1637222746]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.351039, 8.300138, 13.326063)
+use_collision = true
+size = Vector3(6, 18, 6)
+material = SubResource("StandardMaterial3D_0wfyh")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="." unique_id=840181182]
+transform = Transform3D(7.15, 0, 0, 0, 1.1, 0, 0, 0, 50.05, 0, -0.3990159, 0)
+use_collision = true
+material = SubResource("StandardMaterial3D_jyhfs")
+
+[node name="Player" parent="." unique_id=99861014 instance=ExtResource("2_0wfyh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.44722, 51.372692, -14.06226)
+
+[node name="Node3D" type="Node3D" parent="." unique_id=713710218]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 0, 0)
+
+[node name="Sketchfab_Scene" parent="Node3D" unique_id=1537346206 instance=ExtResource("3_sugp2")]
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Node3D" unique_id=935542749]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Node3D/StaticBody3D" unique_id=1789839857]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.335222, 25.4282, -13.966305)
+shape = SubResource("BoxShape3D_wvhbo")
+
+[node name="Sketchfab_Scene" parent="." unique_id=502968102 instance=ExtResource("4_tefeu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.88073, 1.001627, 48.53235)
+
+[node name="building2" parent="." unique_id=910475017 instance=ExtResource("5_o6xl0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 38, -2, 49)
+
+[node name="building" parent="." unique_id=1667638943 instance=ExtResource("6_tipki")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 105, 1, -73)
