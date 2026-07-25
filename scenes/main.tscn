@@ -1,33 +1,37 @@
 [gd_scene format=3 uid="uid://cxa1oxf8y4eu1"]
 
-[ext_resource type="Shader" uid="uid://ok3u0sv6fbkm" path="res://resources/sky.gdshader" id="1_o5qli"]
+[ext_resource type="Texture2D" uid="uid://c6xlxkile067n" path="res://assets/buildings/lines-traffic-paved-roads-background.jpg" id="1_tefeu"]
 [ext_resource type="PackedScene" uid="uid://c5adiqgkhro40" path="res://scenes/player.tscn" id="2_0wfyh"]
-[ext_resource type="PackedScene" uid="uid://bqowtmavfavm8" path="res://assets/free_-_sm_simplebuilding_1a_-_public_domain/scene.gltf" id="3_sugp2"]
-[ext_resource type="PackedScene" uid="uid://c1be6owuhc2hx" path="res://assets/apartament.glb" id="4_tefeu"]
-[ext_resource type="PackedScene" uid="uid://da6antb7xbf70" path="res://assets/building2.glb" id="5_o6xl0"]
-[ext_resource type="PackedScene" uid="uid://c6r2a28qigfuh" path="res://assets/building.glb" id="6_tipki"]
+[ext_resource type="PackedScene" uid="uid://c3tkarpeaw6fo" path="res://assets/buildings/apartament.glb" id="4_tefeu"]
+[ext_resource type="PackedScene" uid="uid://bt00m6264x0qf" path="res://assets/buildings/building.glb" id="5_o6xl0"]
+[ext_resource type="PackedScene" uid="uid://cawgoie2v54s6" path="res://assets/buildings/large_building.glb" id="6_tefeu"]
+[ext_resource type="PackedScene" uid="uid://2ut2r6jtuiki" path="res://scenes/Heli.tscn" id="7_85g3d"]
+[ext_resource type="PackedScene" uid="uid://civ2cncjrirgm" path="res://assets/buildings/Modern House_05_blend.glb" id="7_o6xl0"]
+[ext_resource type="PackedScene" uid="uid://c3r73pm50e15g" path="res://scenes/car.tscn" id="9_choun"]
+[ext_resource type="Script" uid="uid://bjxnlhsjwy4xf" path="res://scenes/car_spawner.gd" id="10_ya4ey"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_sugp2"]
-shader = ExtResource("1_o5qli")
-shader_parameter/sky_color = Color(0.14308679, 0.0022402457, 0.14118788, 1)
-shader_parameter/line_color = Color(0, 1, 1, 1)
-shader_parameter/line_distance = 10.000000471740119
-shader_parameter/line_thickness = 0.005
-shader_parameter/parallax_speed = 0.5
-shader_parameter/cam_matrix = Basis(1, 0, 0, 0, 1, 0, 0, 0, 1)
-shader_parameter/cam_yaw = 0.0
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_o6xl0"]
+sky_top_color = Color(0.36991724, 0.3687137, 0.867025, 1)
+sky_horizon_color = Color(0.61975956, 0.2555142, 0.666267, 1)
+ground_bottom_color = Color(0.67995036, 0.5212133, 0.13233033, 1)
+ground_horizon_color = Color(0.71180034, 0.29661003, 0.65547603, 1)
+ground_curve = 0.38054454
+ground_energy_multiplier = 0.9
 
 [sub_resource type="Sky" id="Sky_4cdbh"]
-sky_material = SubResource("ShaderMaterial_sugp2")
+sky_material = SubResource("ProceduralSkyMaterial_o6xl0")
 
 [sub_resource type="Environment" id="Environment_eav63"]
 background_mode = 2
-background_energy_multiplier = 4.63
+background_energy_multiplier = 1.83
 sky = SubResource("Sky_4cdbh")
 sky_custom_fov = 7.4
 ambient_light_source = 3
-ambient_light_color = Color(0.10411224, 0.08889131, 0.22857921, 1)
+ambient_light_color = Color(0.36091453, 0.43836638, 0.51917833, 1)
+ambient_light_sky_contribution = 0.4
 ambient_light_energy = 9.41
+reflected_light_source = 2
+tonemap_mode = 2
 
 [sub_resource type="Compositor" id="Compositor_sfylq"]
 
@@ -37,10 +41,19 @@ ambient_light_energy = 9.41
 albedo_color = Color(0, 0, 0, 1)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jyhfs"]
-albedo_color = Color(0, 0, 0, 1)
+albedo_texture = ExtResource("1_tefeu")
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_wvhbo"]
 size = Vector3(19.546753, 45.601868, 30)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ifow5"]
+size = Vector3(0.3151245, 1.2905273, 0.67185974)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ibjym"]
+size = Vector3(0.86083984, 0.9774475, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_tbgi4"]
+size = Vector3(0.11388397, 0.5109253, 0.13609123)
 
 [node name="Node3D" type="Node3D" unique_id=1261093005]
 
@@ -50,13 +63,14 @@ environment = SubResource("Environment_eav63")
 compositor = SubResource("Compositor_sfylq")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=33541906]
-transform = Transform3D(0.9502759, -5.370385e-09, 0.31140924, -0.2861395, 0.3945987, 0.87316453, -0.122881696, -0.9188537, 0.37497762, 0, 3.8810377, 3.4619346)
-light_color = Color(0.37661263, 0.5180057, 0.9231197, 1)
+transform = Transform3D(-0.9068861, 0.17598508, 0.38286686, 0.40852106, 0.14448157, 0.9012413, 0.10328777, 0.9737324, -0.20292193, 92.759125, 69.005875, 166.38905)
+light_color = Color(0.4914214, 0.50468016, 0.8621125, 1)
 light_energy = 0.525
 light_specular = 4.802
+sky_mode = 2
 
 [node name="MeshInstance3D4" type="CSGBox3D" parent="." unique_id=392593160]
-transform = Transform3D(34.172585, 0, 0, 0, 1, 0, 0, 0, 27.40657, 0, -1, 5)
+transform = Transform3D(34.172585, 0, 0, 0, 1, 0, 0, 0, 27.40657, -0.04850769, -1, 4.9005394)
 use_collision = true
 size = Vector3(14, 1, 20)
 
@@ -78,18 +92,17 @@ size = Vector3(6, 18, 6)
 material = SubResource("StandardMaterial3D_0wfyh")
 
 [node name="CSGBox3D" type="CSGBox3D" parent="." unique_id=840181182]
-transform = Transform3D(7.15, 0, 0, 0, 1.1, 0, 0, 0, 305.305, 0, -0.17373526, 2)
+transform = Transform3D(7.15, 0, 0, 0, 1.1, 0, 0, 0, -549.54895, 0, -0.42823374, 2)
 use_collision = true
 size = Vector3(1, 0.001, 1)
 material = SubResource("StandardMaterial3D_jyhfs")
 
 [node name="Player" parent="." unique_id=99861014 instance=ExtResource("2_0wfyh")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.44722, 51.372692, -14.06226)
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 29.676598, 59.89335, 47.071594)
 
 [node name="Node3D" type="Node3D" parent="." unique_id=713710218]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 0, 0)
-
-[node name="Sketchfab_Scene" parent="Node3D" unique_id=1537346206 instance=ExtResource("3_sugp2")]
 
 [node name="StaticBody3D" type="StaticBody3D" parent="Node3D" unique_id=935542749]
 
@@ -97,11 +110,47 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 0, 0)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.335222, 25.4282, -13.966305)
 shape = SubResource("BoxShape3D_wvhbo")
 
-[node name="Sketchfab_Scene" parent="." unique_id=502968102 instance=ExtResource("4_tefeu")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.88073, 1.001627, 48.53235)
+[node name="buidling2" type="Node3D" parent="." unique_id=1704753113]
 
-[node name="building2" parent="." unique_id=910475017 instance=ExtResource("5_o6xl0")]
+[node name="model" parent="buidling2" unique_id=910475017 instance=ExtResource("5_o6xl0")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 38, -2, 49)
 
-[node name="building" parent="." unique_id=1667638943 instance=ExtResource("6_tipki")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 105, 1, -73)
+[node name="StaticBody3D" type="StaticBody3D" parent="buidling2" unique_id=895213822]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="buidling2/StaticBody3D" unique_id=610818438]
+transform = Transform3D(29.515461, 0, 0, 0, 29.515461, 0, 0, 0, 29.515461, 37.784557, 38.977524, 49.48891)
+shape = SubResource("BoxShape3D_ifow5")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="buidling2/StaticBody3D" unique_id=666816685]
+transform = Transform3D(22.7, 0, 0, 0, 65.376, 0, 0, 0, 11.35, 32.155502, 26.124676, 46.002987)
+shape = SubResource("BoxShape3D_ibjym")
+
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="buidling2/StaticBody3D" unique_id=1831138106]
+transform = Transform3D(29.515461, 0, 0, 0, 29.515461, 0, 0, 0, 29.515461, 38.43298, 50.49169, 59.45627)
+shape = SubResource("BoxShape3D_tbgi4")
+
+[node name="building" type="Node3D" parent="." unique_id=1453130439]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 29.35152, 59.54318, 47.44201)
+
+[node name="Modern House_05_blend" parent="." unique_id=233799389 instance=ExtResource("7_o6xl0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -52.222157, -0.499833, 77.35071)
+
+[node name="apartament" parent="." unique_id=2016942865 instance=ExtResource("4_tefeu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16.00277, 1.0016301, 127.18297)
+
+[node name="Heli" parent="." unique_id=1365599492 instance=ExtResource("7_85g3d")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 58.20952, 68.80628, 48.225937)
+
+[node name="Car" parent="." unique_id=16832819 instance=ExtResource("9_choun")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 32.096096, 63.476913, 41.157337)
+
+[node name="Marker3D" type="Marker3D" parent="." unique_id=1037108474]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 2.8100145, 1.993, 0, 273.75003)
+script = ExtResource("10_ya4ey")
+
+[node name="Timer" type="Timer" parent="Marker3D" unique_id=1292561098]
+process_callback = 0
+autostart = true
+
+[node name="large_building" parent="." unique_id=174640061 instance=ExtResource("6_tefeu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 86.39303, 13.001766, -91.63115)
