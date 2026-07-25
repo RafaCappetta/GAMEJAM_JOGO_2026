@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://l887yldrwqyf"]
+
+[ext_resource type="PackedScene" uid="uid://b4b5j6lmsgqbh" path="res://assets/low_poly_helicopter.glb" id="1_4loa8"]
+
+[node name="Sketchfab_Scene" unique_id=1266927134 instance=ExtResource("1_4loa8")]
+
+[node name="Helicopter" parent="Sketchfab_model/0649b36a3fdd470aa6f7411146aeda37_fbx/Object_2/RootNode" parent_id_path=PackedInt32Array(1156970249) index="0" unique_id=1878200735]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 29.947197, -50.389748, 13.543355)
+
+[node name="Propeller" parent="Sketchfab_model/0649b36a3fdd470aa6f7411146aeda37_fbx/Object_2/RootNode/Helicopter" index="0" unique_id=1856054996]
+transform = Transform3D(-4.371139e-08, -1.7763568e-15, 1, 0, 1, 1.7763568e-15, -1, 7.7647024e-23, -4.371139e-08, -2.3323238, 559.6669, -2670.83)

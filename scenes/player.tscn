@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://c5adiqgkhro40"]
 
 [ext_resource type="Script" uid="uid://rnw0casfrf8k" path="res://scripts/player.gd" id="1_3vyb7"]
+[ext_resource type="Script" uid="uid://sdnypkgh5d4w" path="res://scripts/camera.gd" id="2_smehm"]
 [ext_resource type="Texture2D" uid="uid://dvu60cdjl3slq" path="res://assets/images/Soco0.png" id="2_tuyoq"]
 [ext_resource type="Texture2D" uid="uid://b7ngnxeiniv42" path="res://assets/images/Soco0.5.png" id="3_fjrip"]
 [ext_resource type="Texture2D" uid="uid://c5cqj1ghyoo4p" path="res://assets/images/Soco2.png" id="4_smehm"]
@@ -67,6 +68,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.47716522, 0)
 
 [node name="camera" type="Camera3D" parent="head" unique_id=1098633085]
 unique_name_in_owner = true
+script = ExtResource("2_smehm")
 
 [node name="dash_cooldown" type="Timer" parent="." unique_id=1982997825]
 unique_name_in_owner = true
