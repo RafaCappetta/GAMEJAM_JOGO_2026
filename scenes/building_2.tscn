@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://cd0l5h6xscbv"]
+
+[ext_resource type="PackedScene" uid="uid://dthxgmdiev8hk" path="res://assets/buildings/building2.glb" id="1_76tcf"]
+[ext_resource type="PackedScene" uid="uid://bbhqsg2j2newb" path="res://assets/buildings/building2-colonly.glb" id="2_uqj7g"]
+
+[node name="Building2" type="StaticBody3D" unique_id=1292234559]
+
+[node name="building2" parent="." unique_id=1210475517 instance=ExtResource("1_76tcf")]
+
+[node name="building2-colonly2" parent="." unique_id=1982828534 instance=ExtResource("2_uqj7g")]

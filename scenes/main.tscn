@@ -2,14 +2,14 @@
 
 [ext_resource type="Texture2D" uid="uid://c6xlxkile067n" path="res://assets/buildings/lines-traffic-paved-roads-background.jpg" id="1_tefeu"]
 [ext_resource type="PackedScene" uid="uid://c5adiqgkhro40" path="res://scenes/player.tscn" id="2_0wfyh"]
-[ext_resource type="PackedScene" uid="uid://c3tkarpeaw6fo" path="res://assets/buildings/apartament.glb" id="4_tefeu"]
-[ext_resource type="PackedScene" uid="uid://bt00m6264x0qf" path="res://assets/buildings/building.glb" id="5_o6xl0"]
-[ext_resource type="PackedScene" uid="uid://cawgoie2v54s6" path="res://assets/buildings/large_building.glb" id="6_tefeu"]
+[ext_resource type="PackedScene" uid="uid://ljsnc6ag8e6f" path="res://scenes/buildings/building.tscn" id="3_ya4ey"]
 [ext_resource type="PackedScene" uid="uid://2ut2r6jtuiki" path="res://scenes/Heli.tscn" id="7_85g3d"]
+[ext_resource type="PackedScene" uid="uid://bh6qerynut3ux" path="res://scenes/large_building.tscn" id="7_ya4ey"]
+[ext_resource type="PackedScene" uid="uid://cd0l5h6xscbv" path="res://scenes/building_2.tscn" id="8_eb6dy"]
 [ext_resource type="PackedScene" uid="uid://c3r73pm50e15g" path="res://scenes/car.tscn" id="9_choun"]
-[ext_resource type="PackedScene" uid="uid://deuue1nwhwrj5" path="res://assets/buildings/house.glb" id="10_eb6dy"]
+[ext_resource type="PackedScene" uid="uid://rfn5sw2fhvh4" path="res://scenes/house.tscn" id="10_eb6dy"]
+[ext_resource type="PackedScene" uid="uid://cval6hkq4y7ee" path="res://scenes/buildings/apartment.tscn" id="10_trceg"]
 [ext_resource type="Script" uid="uid://bjxnlhsjwy4xf" path="res://scenes/car_spawner.gd" id="10_ya4ey"]
-[ext_resource type="PackedScene" uid="uid://dthxgmdiev8hk" path="res://assets/buildings/building2.glb" id="11_trceg"]
 [ext_resource type="PackedScene" uid="uid://507hmg0ufhvo" path="res://assets/buildings/Modern House.glb" id="11_ya4ey"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_o6xl0"]
@@ -31,9 +31,34 @@ sky_custom_fov = 7.4
 ambient_light_source = 3
 ambient_light_color = Color(0.36091453, 0.43836638, 0.51917833, 1)
 ambient_light_sky_contribution = 0.4
-ambient_light_energy = 9.41
+ambient_light_energy = 10.37
 reflected_light_source = 2
 tonemap_mode = 2
+tonemap_exposure = 1.73
+glow_enabled = true
+glow_levels/1 = 0.98
+glow_levels/2 = 1.45
+glow_levels/3 = 0.89
+glow_levels/4 = 0.92
+glow_levels/5 = 0.65
+glow_levels/6 = 1.31
+glow_levels/7 = 0.82
+glow_normalized = true
+glow_intensity = 0.92
+glow_strength = 0.61
+glow_mix = 0.846
+glow_blend_mode = 4
+glow_hdr_threshold = 0.22
+glow_hdr_scale = 2.9
+glow_map_strength = 0.74
+fog_light_color = Color(0.51057, 0.09686681, 0.22606617, 1)
+fog_sun_scatter = 0.27
+fog_aerial_perspective = 0.104
+fog_sky_affect = 0.665
+adjustment_enabled = true
+adjustment_brightness = 0.97
+adjustment_contrast = 1.08
+adjustment_saturation = 0.88
 
 [sub_resource type="Compositor" id="Compositor_sfylq"]
 
@@ -48,13 +73,19 @@ albedo_texture = ExtResource("1_tefeu")
 size = Vector3(19.546753, 45.601868, 30)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_ifow5"]
-size = Vector3(0.3151245, 1.2905273, 0.67185974)
+size = Vector3(1.0776367, 0.6989746, 0.9100342)
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_ibjym"]
-size = Vector3(0.86083984, 0.9774475, 1)
+[sub_resource type="BoxShape3D" id="BoxShape3D_a8y0u"]
+size = Vector3(1.6421814, 0.692688, 0.04966736)
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_tbgi4"]
-size = Vector3(0.11388397, 0.5109253, 0.13609123)
+[sub_resource type="BoxShape3D" id="BoxShape3D_jkv2x"]
+size = Vector3(0.86901855, 0.8590088, 0.620842)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_jbj1t"]
+size = Vector3(0.5362854, 0.67041016, 0.25951767)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_muem4"]
+size = Vector3(2, 0.692688, 0.04966736)
 
 [node name="Node3D" type="Node3D" unique_id=1261093005]
 
@@ -66,7 +97,7 @@ compositor = SubResource("Compositor_sfylq")
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=33541906]
 transform = Transform3D(-0.9068861, 0.17598508, 0.38286686, 0.40852106, 0.14448157, 0.9012413, 0.10328777, 0.9737324, -0.20292193, 92.759125, 69.005875, 166.38905)
 light_color = Color(0.8062357, 0.24103633, 0.4098023, 1)
-light_energy = 4.048
+light_energy = 5.44
 light_indirect_energy = 1.475
 light_specular = 3.218
 
@@ -95,30 +126,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 0, 0)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.335222, 25.4282, -13.966305)
 shape = SubResource("BoxShape3D_wvhbo")
 
-[node name="buidling2" type="Node3D" parent="." unique_id=1704753113]
-
-[node name="model" parent="buidling2" unique_id=910475017 instance=ExtResource("5_o6xl0")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 38, -2, 49)
-
-[node name="StaticBody3D" type="StaticBody3D" parent="buidling2" unique_id=895213822]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="buidling2/StaticBody3D" unique_id=610818438]
-transform = Transform3D(29.515461, 0, 0, 0, 29.515461, 0, 0, 0, 29.515461, 37.784557, 38.977524, 49.48891)
-shape = SubResource("BoxShape3D_ifow5")
-
-[node name="CollisionShape3D2" type="CollisionShape3D" parent="buidling2/StaticBody3D" unique_id=666816685]
-transform = Transform3D(22.7, 0, 0, 0, 65.376, 0, 0, 0, 11.35, 32.155502, 26.124676, 46.002987)
-shape = SubResource("BoxShape3D_ibjym")
-
-[node name="CollisionShape3D3" type="CollisionShape3D" parent="buidling2/StaticBody3D" unique_id=1831138106]
-transform = Transform3D(29.515461, 0, 0, 0, 29.515461, 0, 0, 0, 29.515461, 38.43298, 50.49169, 59.45627)
-shape = SubResource("BoxShape3D_tbgi4")
+[node name="StaticBody3D" parent="." unique_id=579967672 instance=ExtResource("3_ya4ey")]
 
 [node name="building" type="Node3D" parent="." unique_id=1453130439]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 29.35152, 59.54318, 47.44201)
-
-[node name="apartament" parent="." unique_id=2016942865 instance=ExtResource("4_tefeu")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16.00277, 1.0016301, 110.18297)
 
 [node name="Heli" parent="." unique_id=1365599492 instance=ExtResource("7_85g3d")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 58.20952, 68.80628, 48.225937)
@@ -134,20 +145,48 @@ script = ExtResource("10_ya4ey")
 process_callback = 0
 autostart = true
 
-[node name="large_building" parent="." unique_id=174640061 instance=ExtResource("6_tefeu")]
+[node name="LargeBuilding" parent="." unique_id=1378445653 instance=ExtResource("7_ya4ey")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -30.606972, -10.998234, -250.63115)
 
-[node name="house" parent="." unique_id=198714959 instance=ExtResource("10_eb6dy")]
-transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -18.024246, -0.9000006, -35.62172)
-
-[node name="building2" parent="." unique_id=310281514 instance=ExtResource("11_trceg")]
+[node name="Building2" parent="." unique_id=1292234559 instance=ExtResource("8_eb6dy")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14, -0.4000001, 4)
 
-[node name="Modern House" parent="." unique_id=600905889 instance=ExtResource("11_ya4ey")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16, 1, 148)
+[node name="house" parent="." unique_id=106585470 instance=ExtResource("10_eb6dy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -18, 0, 30)
 
-[node name="house3" parent="." unique_id=1210824048 instance=ExtResource("10_eb6dy")]
-transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -17, -1, 72)
+[node name="Apartment" parent="." unique_id=11485730 instance=ExtResource("10_trceg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15, 0, 73)
 
-[node name="building3" parent="." unique_id=718940569 instance=ExtResource("5_o6xl0")]
-transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -18, -1, 31)
+[node name="StaticBody3D2" type="StaticBody3D" parent="." unique_id=204099253]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 144.84164)
+
+[node name="Modern House" parent="StaticBody3D2" unique_id=600905889 instance=ExtResource("11_ya4ey")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16.72394, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D2" unique_id=223644577]
+transform = Transform3D(11.843113, 0, 0, 0, 11.843113, 0, 0, 0, 19.385077, -20.290234, 4.167841, 1.2340546)
+shape = SubResource("BoxShape3D_ifow5")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="StaticBody3D2" unique_id=1137807094]
+transform = Transform3D(11.843113, 0, 0, 0, 11.843113, 0, 0, 0, 19.385077, -19.05489, 1.5959542, -8.492569)
+shape = SubResource("BoxShape3D_a8y0u")
+
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="StaticBody3D2" unique_id=871243132]
+transform = Transform3D(11.843113, 0, 0, 0, 11.843113, 0, 0, 0, 19.385077, -11.470028, 3.1363394, -1.734909)
+shape = SubResource("BoxShape3D_jkv2x")
+
+[node name="CollisionShape3D4" type="CollisionShape3D" parent="StaticBody3D2" unique_id=1685800814]
+transform = Transform3D(11.843113, 0, 0, 0, 11.843113, 0, 0, 0, 19.385077, -13.440327, 3.8685827, 6.549011)
+shape = SubResource("BoxShape3D_jbj1t")
+
+[node name="CollisionShape3D5" type="CollisionShape3D" parent="StaticBody3D2" unique_id=1183135892]
+transform = Transform3D(11.843113, 0, 0, 0, 11.843113, 0, 0, 0, 19.385077, -17.033268, -1.1692942, -14.060272)
+shape = SubResource("BoxShape3D_a8y0u")
+
+[node name="CollisionShape3D6" type="CollisionShape3D" parent="StaticBody3D2" unique_id=1011846753]
+transform = Transform3D(-5.176789e-07, 0, 19.385077, 0, 11.843113, 0, -11.843113, 0, -8.473486e-07, -26.933268, -1.1692942, -4.560272)
+shape = SubResource("BoxShape3D_a8y0u")
+
+[node name="CollisionShape3D7" type="CollisionShape3D" parent="StaticBody3D2" unique_id=338842723]
+transform = Transform3D(-5.176789e-07, 0, 19.385077, 0, 11.843113, 0, -11.843113, 0, -8.473486e-07, -7.733268, -1.1692942, -2.4414368)
+shape = SubResource("BoxShape3D_muem4")
