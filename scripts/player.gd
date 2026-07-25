@@ -34,7 +34,10 @@ const FOV_CHANGE = 1.5
 var tween: Tween
 var dash_velocity = 0
 
+var eletric_punch = false
+
 func _ready() -> void:
+	add_to_group("Player")
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 
 func _unhandled_input(event: InputEvent) -> void:
@@ -85,11 +88,12 @@ func _physics_process(delta: float) -> void:
 		%dash_cooldown.start()
 		can_dash = false
 		
-	if Input.is_action_just_pressed("soco"):
+	if Input.is_action_just_pressed("soco") and eletric_punch:
 		%soco_hitbox.global_transform.basis = %camera.global_transform.basis
 		%soco_hitbox.show()
 		%soco_timer.start()
 		%animacao.play("soco")
+		eletric_punch = false
 
 	var input_dir := Input.get_vector("left", "right", "up", "down")
 	var direction := (head.transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()

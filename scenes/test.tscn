@@ -3,6 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://c5adiqgkhro40" path="res://scenes/player.tscn" id="1_errlg"]
 [ext_resource type="Script" uid="uid://dvep5g3qgvrtd" path="res://scripts/test.gd" id="1_iyx0m"]
 [ext_resource type="PackedScene" uid="uid://dveftpj2ytq0" path="res://scenes/pause_menu.tscn" id="2_bl13t"]
+[ext_resource type="PackedScene" uid="uid://xf3hb78gvnpq" path="res://scenes/item_test_3d.tscn" id="4_74lek"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_errlg"]
 sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
@@ -61,3 +62,6 @@ material = SubResource("StandardMaterial3D_g4v7s")
 [node name="Pause_menu" parent="." unique_id=677972992 instance=ExtResource("2_bl13t")]
 unique_name_in_owner = true
 visible = false
+
+[node name="item_test3D" parent="." unique_id=1613466998 instance=ExtResource("4_74lek")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.980527, 0.9646213, 5.9677896)
