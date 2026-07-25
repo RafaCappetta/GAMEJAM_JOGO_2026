@@ -1,0 +1,33 @@
+[gd_scene format=3 uid="uid://c3hl6uniwedq"]
+
+[ext_resource type="Script" uid="uid://cdbtmuix6m4hp" path="res://scripts/bullet.gd" id="1_mkf8s"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_mkf8s"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_at5dv"]
+albedo_color = Color(1, 0, 0, 1)
+emission_enabled = true
+emission = Color(1, 0, 0, 1)
+emission_energy_multiplier = 10.0
+
+[sub_resource type="BoxMesh" id="BoxMesh_lpvoh"]
+material = SubResource("StandardMaterial3D_at5dv")
+size = Vector3(1, 1.6972656, 0.6670532)
+
+[node name="Bullet" type="Area3D" unique_id=34617777]
+script = ExtResource("1_mkf8s")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=647454499]
+transform = Transform3D(0.1805281, 0, 0, 0, 0.19999999, 0, 0, 0, 0.23601669, 0, 0.03501296, 0)
+shape = SubResource("BoxShape3D_mkf8s")
+
+[node name="Timer" type="Timer" parent="." unique_id=655531988]
+wait_time = 3.0
+one_shot = true
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1460052380]
+transform = Transform3D(0.20407748, 0, 0, 0, 0.111358546, 0, 0, 0, 0.33993965, 0, 0.038823243, -0.0066707116)
+mesh = SubResource("BoxMesh_lpvoh")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

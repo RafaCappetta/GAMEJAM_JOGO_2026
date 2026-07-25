@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://cxa1oxf8y4eu1"]
 
-[ext_resource type="Script" uid="uid://c3gwe4kot4sym" path="res://scenes/main.gd" id="1_choun"]
 [ext_resource type="Texture2D" uid="uid://buvb5h1r4kytm" path="res://assets/buildings/lines-traffic-paved-roads-background.jpg" id="1_tefeu"]
+[ext_resource type="Script" uid="uid://c3gwe4kot4sym" path="res://scripts/main.gd" id="1_ya4ey"]
 [ext_resource type="PackedScene" uid="uid://c5adiqgkhro40" path="res://scenes/player.tscn" id="2_0wfyh"]
 [ext_resource type="PackedScene" uid="uid://fvbgmpt6ee3x" path="res://assets/buildings/apartament.glb" id="4_tefeu"]
 [ext_resource type="PackedScene" uid="uid://cadvk2b2w0jjl" path="res://assets/buildings/building.glb" id="5_o6xl0"]
@@ -58,7 +58,7 @@ size = Vector3(0.86083984, 0.9774475, 1)
 size = Vector3(0.11388397, 0.5109253, 0.13609123)
 
 [node name="Main" type="Node3D" unique_id=1261093005]
-script = ExtResource("1_choun")
+script = ExtResource("1_ya4ey")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=111330229]
 unique_name_in_owner = true
