@@ -1,7 +1,7 @@
 [gd_resource type="Theme" format=3 uid="uid://ok5imgbm3w6v"]
 
 [ext_resource type="Texture2D" uid="uid://bh63d4mvn36je" path="res://assets/images/Botao.png" id="1_yeil8"]
-[ext_resource type="Texture2D" uid="uid://ni6ghsthshsv" path="res://assets/images/Botao_pressed.png" id="2_utcsy"]
+[ext_resource type="Texture2D" uid="uid://b6r85ccxegjqr" path="res://assets/images/Botao_pressed.png" id="2_utcsy"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_yeil8"]
 texture = ExtResource("1_yeil8")
