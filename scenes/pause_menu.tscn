@@ -1,3 +1,44 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:83fdd6c51b1ed57516802b94f15dc39e1738ecaba164ed4cce28c22856a4f7b6
-size 1386
+[gd_scene format=3 uid="uid://dveftpj2ytq0"]
+
+[ext_resource type="Script" uid="uid://bwtq5w2kkkg02" path="res://scripts/pause_menu.gd" id="1_n87rw"]
+
+[node name="Pause_menu" type="Control" unique_id=677972992]
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_n87rw")
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=1605010935]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -85.5
+offset_top = -55.0
+offset_right = 85.5
+offset_bottom = 55.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer" unique_id=1138669630]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="resume" type="Button" parent="MarginContainer/VBoxContainer" unique_id=1644833905]
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "Resume"
+
+[node name="quit" type="Button" parent="MarginContainer/VBoxContainer" unique_id=1575532861]
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "Quit"
+
+[connection signal="pressed" from="MarginContainer/VBoxContainer/resume" to="." method="_on_resume_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/quit" to="." method="_on_quit_pressed"]
