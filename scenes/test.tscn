@@ -1,3 +1,66 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:4707428502899b5a43eb8876e3f57c479c4460e38d369d1b21c1098d457c4392
-size 3087
+[gd_scene format=3 uid="uid://c74i4tofw1vqy"]
+
+[ext_resource type="PackedScene" uid="uid://c5adiqgkhro40" path="res://scenes/player.tscn" id="1_errlg"]
+[ext_resource type="Script" uid="uid://dvep5g3qgvrtd" path="res://scripts/test.gd" id="1_iyx0m"]
+[ext_resource type="PackedScene" uid="uid://dveftpj2ytq0" path="res://scenes/pause_menu.tscn" id="2_bl13t"]
+[ext_resource type="PackedScene" uid="uid://xf3hb78gvnpq" path="res://scenes/item_test_3d.tscn" id="4_74lek"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_errlg"]
+sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+ground_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+
+[sub_resource type="Sky" id="Sky_bl13t"]
+sky_material = SubResource("ProceduralSkyMaterial_errlg")
+
+[sub_resource type="Environment" id="Environment_iyx0m"]
+background_mode = 2
+sky = SubResource("Sky_bl13t")
+glow_enabled = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_errlg"]
+albedo_color = Color(0.32156864, 1, 1, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_g4v7s"]
+albedo_color = Color(1, 0.3372549, 1, 1)
+
+[node name="Test" type="Node3D" unique_id=50567568]
+script = ExtResource("1_iyx0m")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1227280284]
+transform = Transform3D(-0.8660254, -0.43301278, 0.25, 0, 0.49999997, 0.86602545, -0.50000006, 0.75, -0.43301266, 0, 0, 0)
+shadow_enabled = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1436501739]
+environment = SubResource("Environment_iyx0m")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="." unique_id=928871825]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.387451, -0.4995, 0.216156)
+use_collision = true
+size = Vector3(43.40869, 0.001, 32.891174)
+
+[node name="Player" parent="." unique_id=99861014 instance=ExtResource("1_errlg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.89083576, 0)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="." unique_id=1459104462]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.4414854, 0.51226807, -3.2505927)
+use_collision = true
+size = Vector3(2.7852783, 2.0245361, 3.1114502)
+material = SubResource("StandardMaterial3D_errlg")
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="." unique_id=1792484700]
+transform = Transform3D(1, 0, 0, 0, 3.0636613, 0, 0, 0, 1, 3.3598666, 2.0140462, -6.5011854)
+use_collision = true
+size = Vector3(2.7852783, 2.0245361, 3.1114502)
+material = SubResource("StandardMaterial3D_errlg")
+
+[node name="wall" type="CSGBox3D" parent="." unique_id=1286944345]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14.278277, 3.044671, -0.21877193)
+use_collision = true
+size = Vector3(0.52441406, 7.3602295, 10.521362)
+material = SubResource("StandardMaterial3D_g4v7s")
+
+[node name="item_test3D" parent="." unique_id=1613466998 instance=ExtResource("4_74lek")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.641711, 0.9844966, 3.0223606)
+
+[node name="Pause_menu" parent="." unique_id=677972992 instance=ExtResource("2_bl13t")]
+unique_name_in_owner = true

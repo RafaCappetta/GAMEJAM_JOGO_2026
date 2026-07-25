@@ -1,3 +1,18 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:e8a79d2ab877b84f030aba6cfe67feaab860fef0dc331498913c3dcfb8173367
-size 676
+[gd_scene format=3 uid="uid://xf3hb78gvnpq"]
+
+[ext_resource type="Script" uid="uid://ctc2umlwpvc5f" path="res://scripts/item_test_3d.gd" id="1_7b1qt"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_wp5od"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_k56px"]
+
+[node name="item_test3D" type="Area3D" unique_id=1613466998]
+script = ExtResource("1_7b1qt")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=2030852759]
+mesh = SubResource("BoxMesh_wp5od")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=369934678]
+shape = SubResource("BoxShape3D_k56px")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
