@@ -8,7 +8,9 @@
 [ext_resource type="PackedScene" uid="uid://2ut2r6jtuiki" path="res://scenes/Heli.tscn" id="7_85g3d"]
 [ext_resource type="PackedScene" uid="uid://civ2cncjrirgm" path="res://assets/buildings/Modern House_05_blend.glb" id="7_o6xl0"]
 [ext_resource type="PackedScene" uid="uid://c3r73pm50e15g" path="res://scenes/car.tscn" id="9_choun"]
+[ext_resource type="PackedScene" uid="uid://deuue1nwhwrj5" path="res://assets/buildings/house.glb" id="10_eb6dy"]
 [ext_resource type="Script" uid="uid://bjxnlhsjwy4xf" path="res://scenes/car_spawner.gd" id="10_ya4ey"]
+[ext_resource type="PackedScene" uid="uid://dthxgmdiev8hk" path="res://assets/buildings/building2.glb" id="11_trceg"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_o6xl0"]
 sky_top_color = Color(0.36991724, 0.3687137, 0.867025, 1)
@@ -23,7 +25,7 @@ sky_material = SubResource("ProceduralSkyMaterial_o6xl0")
 
 [sub_resource type="Environment" id="Environment_eav63"]
 background_mode = 2
-background_energy_multiplier = 1.83
+background_energy_multiplier = 0.51
 sky = SubResource("Sky_4cdbh")
 sky_custom_fov = 7.4
 ambient_light_source = 3
@@ -64,10 +66,9 @@ compositor = SubResource("Compositor_sfylq")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=33541906]
 transform = Transform3D(-0.9068861, 0.17598508, 0.38286686, 0.40852106, 0.14448157, 0.9012413, 0.10328777, 0.9737324, -0.20292193, 92.759125, 69.005875, 166.38905)
-light_color = Color(0.4914214, 0.50468016, 0.8621125, 1)
-light_energy = 0.525
+light_color = Color(0.8243944, 0.6166945, 0.8554095, 1)
+light_energy = 0.721
 light_specular = 4.802
-sky_mode = 2
 
 [node name="MeshInstance3D4" type="CSGBox3D" parent="." unique_id=392593160]
 transform = Transform3D(34.172585, 0, 0, 0, 1, 0, 0, 0, 27.40657, -0.04850769, -1, 4.9005394)
@@ -132,9 +133,6 @@ shape = SubResource("BoxShape3D_tbgi4")
 [node name="building" type="Node3D" parent="." unique_id=1453130439]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 29.35152, 59.54318, 47.44201)
 
-[node name="Modern House_05_blend" parent="." unique_id=233799389 instance=ExtResource("7_o6xl0")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -52.222157, -0.499833, 77.35071)
-
 [node name="apartament" parent="." unique_id=2016942865 instance=ExtResource("4_tefeu")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16.00277, 1.0016301, 127.18297)
 
@@ -154,3 +152,12 @@ autostart = true
 
 [node name="large_building" parent="." unique_id=174640061 instance=ExtResource("6_tefeu")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 86.39303, 13.001766, -91.63115)
+
+[node name="house" parent="." unique_id=198714959 instance=ExtResource("10_eb6dy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -100.02425, -5.9000006, -5.6217194)
+
+[node name="building2" parent="." unique_id=310281514 instance=ExtResource("11_trceg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -86, 5, -74)
+
+[node name="Modern House_05_blend" parent="." unique_id=1565246087 instance=ExtResource("7_o6xl0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -32, -1, 81)
