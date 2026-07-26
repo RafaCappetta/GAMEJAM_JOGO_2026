@@ -9,6 +9,8 @@ extends CharacterBody3D
 # DAR DANO - OK
 #CORRIDA NA PAREDE
 
+var dying = false
+var dying_time = 1
 var life = 100
 
 var punch_damage = 30
@@ -38,6 +40,10 @@ const BOB_AMPLITUDE = 0.08
 const BASE_FOV = 75.0
 const FOV_CHANGE = 1.5
 
+
+var immune_after_hit = false
+var immune_time = 1.0
+var immune_elapsed = 0.0
 """------Wallrunning------"""
 
 """Wallrun Nodepath"""
@@ -93,10 +99,11 @@ func _process(delta: float) -> void:
 	
 
 func _physics_process(delta: float) -> void:
-
+	if dying:
+		return
 	if not is_on_floor():
 		velocity += get_gravity() * delta 
-
+	
 	if Input.is_action_just_pressed("jump") and is_on_floor():
 		velocity.y = JUMP_VELOCITY
 		%Pulo.play()
@@ -254,10 +261,19 @@ func head_bobbing(time_bob):
 	return pos
 
 func get_hit(damage):
+	if immune_after_hit:
+		return
 	life -= damage
+	%sprite.material.set_shader_parameter("progress", (1.0 - (life / 100.0))/2)	
+	immune_after_hit = true
+	get_tree().create_timer(immune_time).timeout.connect(func(): immune_after_hit = false; immune_elapsed = 0)
+		
 	%Tomadano.play()
 	if life <= 0:
-		get_tree().change_scene_to_file("res://scenes/gameover.tscn")
+		dying = true
+		get_tree().create_timer(dying_time).timeout.connect(func(): get_tree().change_scene_to_file("res://scenes/gameover.tscn"))
+		
+
 
 func _on_dash_cooldown_timeout() -> void:
 	can_dash = true
@@ -303,3 +319,9 @@ func _on_wallrun_timer_timeout() -> void:
 	is_wallrunning = false
 	can_wallrun = false
 	wallrun_time_exceeded = true
+
+func screen_shake(intensity, time):
+	if dying:
+		return
+	print("shaking")
+	$head/Wallrun/ScreenShake.shake_pos(intensity, time)

@@ -4,7 +4,7 @@ extends Marker3D
 @export var left: bool = true
 
 @onready var timer: Timer = $Timer
-
+var car_life_time = 5
 var speed: float = 400.0
 var car_scene: PackedScene = preload("res://scenes/car.tscn")
 
@@ -19,4 +19,6 @@ func spawn_car() -> void:
 	if int(x_axis) == 1: 
 		car.linear_velocity.x=  speed * (int(!left) * 2 - 1)
 		look_at(Vector3(left,0,0))
+	
 	add_sibling(car)
+	get_tree().create_timer(5).timeout.connect(car.queue_free)
