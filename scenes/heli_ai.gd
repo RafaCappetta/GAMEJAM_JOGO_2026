@@ -1,7 +1,7 @@
 extends Node3D
 
 var height_offset = 100
-@export var follow_speed: float = 5.0
+@export var follow_speed: float = 1.0
 var ammo = preload("res://scenes/ammo.tscn")
 
 func _ready() -> void:
@@ -29,7 +29,7 @@ func shoot_player():
 		var root_node = get_tree().current_scene
 		missile.reparent(root_node)
 		
-	get_tree().create_timer(1.0).timeout.connect(shoot_player)
+	get_tree().create_timer(0.5).timeout.connect(shoot_player)
 
 
 func _process(delta: float) -> void:
