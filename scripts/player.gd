@@ -23,6 +23,7 @@ var total_speed = SPEED
 const TOUGH_DASH = 200
 var can_tough_dash = false
 var carregando_tough_dash = false
+var tough_dash_powerup = false
 
 
 const DASH = 100
@@ -143,28 +144,29 @@ func _physics_process(delta: float) -> void:
 		%dash_cooldown.start()
 		can_dash = false
 	
-	if Input.is_action_just_pressed("release_skill"):
-		%Tough_dash_charge.start()
-		can_tough_dash = false
-		carregando_tough_dash = true
-		%Tough_dash_hitbox.monitoring = false
-	
-	if Input.is_action_just_released("release_skill"):
-		if can_tough_dash:
+	if tough_dash_powerup:
+		if Input.is_action_just_pressed("release_skill"):
+			%Tough_dash_charge.start()
 			can_tough_dash = false
-			carregando_tough_dash = false
-			dash_velocity = TOUGH_DASH
-			%Tough_dash_hitbox.global_transform.basis = %camera.global_transform.basis
-			%Tough_dash_hitbox.monitoring = true
-			%Tough_dash_hits.start()
-			
-			if tween:
-				tween.stop()
-			tween = create_tween()
-			tween.tween_property(self, "dash_velocity", 0, 0.3).set_ease(Tween.EASE_OUT)
-		else:
-			carregando_tough_dash = false
-			%Tough_dash_charge.stop()
+			carregando_tough_dash = true
+			%Tough_dash_hitbox.monitoring = false
+		
+		if Input.is_action_just_released("release_skill"):
+			if can_tough_dash:
+				can_tough_dash = false
+				carregando_tough_dash = false
+				dash_velocity = TOUGH_DASH
+				%Tough_dash_hitbox.global_transform.basis = %camera.global_transform.basis
+				%Tough_dash_hitbox.monitoring = true
+				%Tough_dash_hits.start()
+				
+				if tween:
+					tween.stop()
+				tween = create_tween()
+				tween.tween_property(self, "dash_velocity", 0, 0.3).set_ease(Tween.EASE_OUT)
+			else:
+				carregando_tough_dash = false
+				%Tough_dash_charge.stop()
 	
 	if Input.is_action_just_pressed("soco") and eletric_punch > 0:
 		%soco_hitbox.global_transform.basis = %camera.global_transform.basis

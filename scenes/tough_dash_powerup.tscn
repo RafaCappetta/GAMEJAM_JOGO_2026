@@ -1,0 +1,32 @@
+[gd_scene format=3 uid="uid://cfub6lc74oqs2"]
+
+[ext_resource type="Script" uid="uid://ly5k74hac5e6" path="res://scripts/tough_dash_powerup.gd" id="1_larqt"]
+[ext_resource type="Texture2D" uid="uid://ce4c836ysacds" path="res://assets/images/disquete_big_dash.png" id="2_s37nt"]
+[ext_resource type="AudioStream" uid="uid://dipv07x8ayt58" path="res://assets/sounds/powerup.wav" id="3_nw761"]
+
+[sub_resource type="QuadMesh" id="QuadMesh_wp5od"]
+size = Vector2(2, 2)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_k56px"]
+transparency = 1
+shading_mode = 0
+albedo_texture = ExtResource("2_s37nt")
+billboard_mode = 1
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_0tbqe"]
+
+[node name="tough_dash_powerup" type="Area3D" unique_id=2043001504]
+script = ExtResource("1_larqt")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=873521477]
+mesh = SubResource("QuadMesh_wp5od")
+surface_material_override/0 = SubResource("StandardMaterial3D_k56px")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1090731666]
+shape = SubResource("BoxShape3D_0tbqe")
+
+[node name="Powerup" type="AudioStreamPlayer" parent="." unique_id=908790001]
+unique_name_in_owner = true
+stream = ExtResource("3_nw761")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
