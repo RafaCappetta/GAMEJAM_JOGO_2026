@@ -3,27 +3,26 @@
 [ext_resource type="PackedScene" uid="uid://bt00m6264x0qf" path="res://assets/buildings/building.glb" id="1_a3sb6"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_ifow5"]
-size = Vector3(0.3151245, 1.2905273, 0.67185974)
+size = Vector3(0.28647995, 2.0573425, 0.67185974)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_ibjym"]
-size = Vector3(0.86083984, 0.9774475, 1)
+size = Vector3(0.83154297, 0.92700195, 1)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_tbgi4"]
-size = Vector3(0.11388397, 0.5109253, 0.13609123)
+size = Vector3(0.1123333, 2.043438, 0.24001646)
 
-[node name="StaticBody3D" type="StaticBody3D" unique_id=579967672]
+[node name="Building" type="StaticBody3D" unique_id=579967672]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=980709282]
-transform = Transform3D(29.515461, 0, 0, 0, 29.515461, 0, 0, 0, 29.515461, 37.784557, 38.977524, 49.48891)
+transform = Transform3D(29.515461, 0, 0, 0, 29.515461, 0, 0, 0, 29.515461, 3.947551, 30.059057, 0)
 shape = SubResource("BoxShape3D_ifow5")
 
 [node name="CollisionShape3D2" type="CollisionShape3D" parent="." unique_id=2120033819]
-transform = Transform3D(22.7, 0, 0, 0, 65.376, 0, 0, 0, 11.35, 32.155502, 26.124676, 46.002987)
+transform = Transform3D(22.7, 0, 0, 0, 65.376, 0, 0, 0, 11.35, -1.2358643, 30.295933, -3)
 shape = SubResource("BoxShape3D_ibjym")
 
 [node name="CollisionShape3D3" type="CollisionShape3D" parent="." unique_id=214230795]
-transform = Transform3D(29.515461, 0, 0, 0, 29.515461, 0, 0, 0, 29.515461, 38.43298, 50.49169, 59.45627)
+transform = Transform3D(29.515461, 0, 0, 0, 29.515461, 0, 0, 0, 29.515461, 4.9061537, 30.170918, 10.124212)
 shape = SubResource("BoxShape3D_tbgi4")
 
 [node name="model" parent="." unique_id=718940569 instance=ExtResource("1_a3sb6")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 38, -2, 49)

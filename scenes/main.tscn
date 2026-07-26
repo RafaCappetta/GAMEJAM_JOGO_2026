@@ -66,6 +66,7 @@ ambient_light_energy = 10.37
 reflected_light_source = 2
 tonemap_mode = 2
 tonemap_exposure = 1.73
+ssao_enabled = true
 glow_enabled = true
 glow_levels/1 = 0.98
 glow_levels/2 = 1.45
@@ -176,11 +177,14 @@ environment = SubResource("Environment_eav63")
 compositor = SubResource("Compositor_sfylq")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=33541906]
-transform = Transform3D(-0.9068861, 0.17598508, 0.38286686, 0.40852106, 0.14448157, 0.9012413, 0.10328777, 0.9737324, -0.20292193, 92.759125, 69.005875, 166.38905)
+transform = Transform3D(-0.9068859, 0.17598504, 0.3828669, 0.11481066, -0.7710361, 0.62635607, 0.40543348, 0.6119907, 0.6790366, 92.759125, 69.005875, 166.38905)
 light_color = Color(0.8062357, 0.24103633, 0.4098023, 1)
 light_energy = 5.44
 light_indirect_energy = 1.475
 light_specular = 3.218
+shadow_enabled = true
+shadow_opacity = 0.22
+shadow_blur = 3.801
 
 [node name="MeshInstance3D4" type="CSGBox3D" parent="." unique_id=392593160]
 transform = Transform3D(34.172585, 0, 0, 0, 1, 0, 0, 0, 27.40657, 0, -1.3000001, 0)

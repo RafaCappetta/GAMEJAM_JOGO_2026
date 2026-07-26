@@ -12,10 +12,16 @@ extends CharacterBody3D
 var life = 100
 
 var punch_damage = 30
+var tough_dash_damage = 60
 
 const SPEED = 5.0
 const RUN_SPEED = 7.5
 var total_speed = SPEED
+
+const TOUGH_DASH = 200
+var can_tough_dash = false
+var carregando_tough_dash = false
+
 
 const DASH = 100
 var can_dash = true
@@ -44,6 +50,7 @@ const FOV_CHANGE = 1.5
 var can_wallrun = false
 var wallrun_delay = 0.2
 @onready var wallrun_delay_default = wallrun_delay
+var wallrun_time_exceeded = false
 
 """To know if is Wallrunning"""
 var is_wallrunning
@@ -57,11 +64,11 @@ var side = ""
 
 var tween: Tween
 var dash_velocity = 0
-
 var eletric_punch = 0
 
 func _ready() -> void:
 	add_to_group("Player")
+	%Tough_dash_hitbox.monitoring = false
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 
 func _unhandled_input(event: InputEvent) -> void:
@@ -91,16 +98,18 @@ func _physics_process(delta: float) -> void:
 
 	if Input.is_action_just_pressed("jump") and is_on_floor():
 		velocity.y = JUMP_VELOCITY
+		%Pulo.play()
 		
 	if not is_on_floor():
 		if can_double_jump:
 			if Input.is_action_just_pressed("ui_accept"):
 				velocity.y = JUMP_VELOCITY
 				can_double_jump = false
+				%Pulo.play()
 		
 		wallrun_delay = clamp(wallrun_delay - delta, 0, wallrun_delay_default)
 		
-		if wallrun_delay == 0:
+		if wallrun_delay == 0 and not wallrun_time_exceeded:
 			can_wallrun = true
 		
 	elif is_on_floor():
@@ -108,6 +117,7 @@ func _physics_process(delta: float) -> void:
 		is_wallrunning = false
 		can_wallrun = false
 		wallrun_delay = wallrun_delay_default
+		wallrun_time_exceeded = false
 		
 	if Input.is_action_pressed("run"):
 		total_speed = SPEED + RUN_SPEED
@@ -117,26 +127,57 @@ func _physics_process(delta: float) -> void:
 		
 	if Input.is_action_just_pressed("dash") and can_dash:
 		dash_velocity = DASH
+		%Dash.play()
 		if tween:
 			tween.stop()
 		tween = create_tween()
 		tween.tween_property(self, "dash_velocity", 0, 0.3).set_ease(Tween.EASE_OUT)
 		%dash_cooldown.start()
 		can_dash = false
-		
+	
+	if Input.is_action_just_pressed("release_skill"):
+		%Tough_dash_charge.start()
+		can_tough_dash = false
+		carregando_tough_dash = true
+		%Tough_dash_hitbox.monitoring = false
+	
+	if Input.is_action_just_released("release_skill"):
+		if can_tough_dash:
+			can_tough_dash = false
+			carregando_tough_dash = false
+			dash_velocity = TOUGH_DASH
+			%Tough_dash_hitbox.global_transform.basis = %camera.global_transform.basis
+			%Tough_dash_hitbox.monitoring = true
+			%Tough_dash_hits.start()
+			
+			if tween:
+				tween.stop()
+			tween = create_tween()
+			tween.tween_property(self, "dash_velocity", 0, 0.3).set_ease(Tween.EASE_OUT)
+		else:
+			carregando_tough_dash = false
+			%Tough_dash_charge.stop()
+	
 	if Input.is_action_just_pressed("soco") and eletric_punch > 0:
 		%soco_hitbox.global_transform.basis = %camera.global_transform.basis
 		%soco_hitbox.monitoring = true
 		%soco_timer.start()
 		%animacao.play("soco")
+		%Socorelampago.play()
 		eletric_punch -= 1
 
 	var input_dir := Input.get_vector("left", "right", "up", "down")
 	var direction := (head.transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
 	if direction:
+		if is_on_floor():
+			if not %Corrida.playing:
+				%Corrida.play()
+		else:
+			%Corrida.stop()
 		velocity.x = direction.x * (total_speed + dash_velocity)
 		velocity.z = direction.z * (total_speed + dash_velocity)
 	else:
+		%Corrida.stop()
 		velocity.x = move_toward(velocity.x, 0, total_speed)
 		velocity.z = move_toward(velocity.z, 0, total_speed)
 		
@@ -168,6 +209,9 @@ func _physics_process(delta: float) -> void:
 			"""Enable Wallrunning"""
 			is_wallrunning = true
 			
+			if %Wallrun_timer.is_stopped():
+				%Wallrun_timer.start()
+			
 			"""Set side to a string, telling which side of player the wall is"""
 			side = get_side_wall(collision.get_position())
 			
@@ -177,6 +221,8 @@ func _physics_process(delta: float) -> void:
 		
 		else:
 			is_wallrunning = false
+			%Wallrun_timer.stop()
+			wallrun_time_exceeded = false
 	
 	"""Tilt the view"""
 	if is_wallrunning:
@@ -208,6 +254,7 @@ func head_bobbing(time_bob):
 
 func get_hit(damage):
 	life -= damage
+	%Tomadano.play()
 	if life <= 0:
 		get_tree().change_scene_to_file("res://scenes/gameover.tscn")
 
@@ -235,6 +282,23 @@ func get_side_wall(collision_point):
 	
 func _on_soco_hitbox_area_entered(area: Area3D) -> void:
 	if area.is_in_group("Bullet"):
+		%Parry.play()
 		print("PARRY")
 		%Parry_light.parry()
 		area.parry = true
+
+func _on_tough_dash_charge_timeout() -> void:
+	if carregando_tough_dash:
+		can_tough_dash = true
+
+func _on_tough_dash_hits_timeout() -> void:
+	%Tough_dash_hitbox.monitoring = false
+
+func _on_tough_dash_hitbox_body_entered(body: Node3D) -> void:
+	if body.is_in_group("Enemy"):
+		body.get_hit(tough_dash_damage)
+
+func _on_wallrun_timer_timeout() -> void:
+	is_wallrunning = false
+	can_wallrun = false
+	wallrun_time_exceeded = true

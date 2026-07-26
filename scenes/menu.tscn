@@ -1,0 +1,66 @@
+[gd_scene format=3 uid="uid://vfjm52ir0e10"]
+
+[ext_resource type="Script" uid="uid://cupvwvwpuqr1g" path="res://scripts/menu.gd" id="1_con2f"]
+[ext_resource type="Texture2D" uid="uid://y66dkol8pmqf" path="res://assets/images/Menu.png" id="1_yqeox"]
+[ext_resource type="AudioStream" uid="uid://b0vxmxv7t0p1t" path="res://assets/sounds/tomadano.wav" id="3_mhnvy"]
+[ext_resource type="AudioStream" uid="uid://chk4unc31dnth" path="res://assets/musics/menu.ogg" id="4_mhnvy"]
+
+[node name="Menu" type="Control" unique_id=552726624]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_con2f")
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=1402680845]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -152.0
+offset_bottom = 66.880005
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_yqeox")
+expand_mode = 5
+
+[node name="novo_jogo" type="Button" parent="." unique_id=408743113]
+self_modulate = Color(1, 1, 1, 0)
+layout_mode = 0
+offset_left = 483.0
+offset_top = 243.0
+offset_right = 684.0
+offset_bottom = 354.0
+
+[node name="continuar" type="Button" parent="." unique_id=1556953783]
+modulate = Color(0, 0, 0, 1)
+self_modulate = Color(1, 1, 1, 0.39215687)
+layout_mode = 0
+offset_left = 483.0
+offset_top = 382.0
+offset_right = 684.0
+offset_bottom = 493.0
+
+[node name="sair" type="Button" parent="." unique_id=1180859692]
+self_modulate = Color(1, 1, 1, 0)
+layout_mode = 0
+offset_left = 483.0
+offset_top = 520.0
+offset_right = 684.0
+offset_bottom = 631.0
+
+[node name="Tomadano" type="AudioStreamPlayer" parent="." unique_id=1685284269]
+unique_name_in_owner = true
+stream = ExtResource("3_mhnvy")
+
+[node name="Menu" type="AudioStreamPlayer" parent="." unique_id=429257298]
+stream = ExtResource("4_mhnvy")
+volume_db = -5.0
+autoplay = true
+parameters/looping = true
+
+[connection signal="pressed" from="novo_jogo" to="." method="_on_novo_jogo_pressed"]
+[connection signal="pressed" from="continuar" to="." method="_on_continuar_pressed"]
+[connection signal="pressed" from="sair" to="." method="_on_sair_pressed"]
