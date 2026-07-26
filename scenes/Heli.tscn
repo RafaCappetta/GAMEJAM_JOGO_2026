@@ -3,21 +3,53 @@
 [ext_resource type="Script" uid="uid://8ehdcw6ie40n" path="res://scenes/helicopter.gd" id="1_u65xw"]
 [ext_resource type="AnimationLibrary" uid="uid://d0q2gewdcvm7t" path="res://assets/anim.res" id="1_uoyau"]
 [ext_resource type="PackedScene" uid="uid://b4b5j6lmsgqbh" path="res://assets/low_poly_helicopter.glb" id="2_u65xw"]
+[ext_resource type="PackedScene" uid="uid://dyml7v5oh1uq4" path="res://scenes/ammo.tscn" id="5_lngh1"]
+[ext_resource type="Script" uid="uid://cm24w5fdvst35" path="res://scenes/heli_ai.gd" id="5_xfml8"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_wvhbo"]
-height = 2.3504486
+radius = 0.4194336
+height = 2.645133
+
+[sub_resource type="Animation" id="Animation_hu6gy"]
+length = 0.001
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = false
+tracks/0/path = NodePath(".:linear_velocity:y")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_xfml8"]
+_data = {
+&"RESET": SubResource("Animation_hu6gy")
+}
 
 [node name="RigidBody3D" type="RigidBody3D" unique_id=221491160]
+collision_layer = 0
+collision_mask = 2
 gravity_scale = 0.0
 script = ExtResource("1_u65xw")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1960029704]
-transform = Transform3D(-3.4877317e-07, -7.979, 0, 7.979, -3.4877317e-07, 0, 0, 0, 7.979, 4.7136116, 2.0603851e-07, 0)
+transform = Transform3D(1.524536e-14, 3.4877317e-07, 7.979, 7.979, -3.4877317e-07, 0, 3.4877317e-07, 7.979, -3.4877317e-07, 2.1920033e-07, 0.6695431, 5.014719)
 shape = SubResource("CapsuleShape3D_wvhbo")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=115486120]
+libraries/ = SubResource("AnimationLibrary_xfml8")
 libraries/anim = ExtResource("1_uoyau")
 autoplay = &"anim/Main"
 
 [node name="heli" parent="." unique_id=597827727 instance=ExtResource("2_u65xw")]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0, 0, 0)
+
+[node name="Ai" type="Node3D" parent="." unique_id=705123811]
+script = ExtResource("5_xfml8")
+
+[node name="missile_launcher" type="Node3D" parent="." unique_id=910388127]
+
+[node name="ammo" parent="missile_launcher" unique_id=1425892495 instance=ExtResource("5_lngh1")]
