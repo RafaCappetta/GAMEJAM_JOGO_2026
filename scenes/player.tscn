@@ -68,6 +68,7 @@ animations = [{
 
 [node name="Player" type="CharacterBody3D" unique_id=99861014]
 script = ExtResource("1_3vyb7")
+wallrun_node_path = NodePath("head/Wallrun")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1317665172]
 mesh = SubResource("CapsuleMesh_ij1v8")
@@ -92,7 +93,9 @@ mesh = SubResource("BoxMesh_yf5fn")
 [node name="head" type="Node3D" parent="." unique_id=1777252901]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.47716522, 0)
 
-[node name="camera" type="Camera3D" parent="head" unique_id=1098633085]
+[node name="Wallrun" type="Node3D" parent="head" unique_id=805172878]
+
+[node name="camera" type="Camera3D" parent="head/Wallrun" unique_id=1098633085]
 unique_name_in_owner = true
 script = ExtResource("2_smehm")
 
