@@ -13,6 +13,9 @@
 [ext_resource type="Script" uid="uid://bjxnlhsjwy4xf" path="res://scenes/car_spawner.gd" id="10_ya4ey"]
 [ext_resource type="PackedScene" uid="uid://dhg4v4ukgfa5b" path="res://assets/buildings/Modern House.glb" id="11_ya4ey"]
 [ext_resource type="PackedScene" uid="uid://dveftpj2ytq0" path="res://scenes/pause_menu.tscn" id="13_trceg"]
+[ext_resource type="PackedScene" uid="uid://jb8bb86groo" path="res://assets/modelscity/building-skyscraper-e.glb" id="14_a8y0u"]
+[ext_resource type="PackedScene" uid="uid://cm0q00pqy07k3" path="res://assets/modelscity/building-l.glb" id="15_jbj1t"]
+[ext_resource type="PackedScene" uid="uid://c3567ps48y7wb" path="res://assets/modelscity/building-k.glb" id="16_muem4"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_o6xl0"]
 sky_top_color = Color(0.36991724, 0.3687137, 0.867025, 1)
@@ -89,6 +92,15 @@ size = Vector3(0.5362854, 0.67041016, 0.25951767)
 [sub_resource type="BoxShape3D" id="BoxShape3D_muem4"]
 size = Vector3(2, 0.692688, 0.04966736)
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_hsxi2"]
+size = Vector3(0.23184586, 0.5071564, 0.4173584)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_gqrcs"]
+size = Vector3(0.21820068, 1.9902191, 1.3661804)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_omgdb"]
+size = Vector3(0.07902908, 0.061847687, 0.03265065)
+
 [node name="Main" type="Node3D" unique_id=1261093005]
 script = ExtResource("1_ya4ey")
 
@@ -130,15 +142,16 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.335222, 25.4282, -13.96630
 shape = SubResource("BoxShape3D_wvhbo")
 
 [node name="StaticBody3D" parent="." unique_id=579967672 instance=ExtResource("3_ya4ey")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.267071, 0, -1.0813408)
 
 [node name="building" type="Node3D" parent="." unique_id=1453130439]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 29.35152, 59.54318, 47.44201)
 
 [node name="Heli" parent="." unique_id=1365599492 instance=ExtResource("7_85g3d")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 58.20952, 68.80628, 48.225937)
+transform = Transform3D(0.94668955, 0, 0.32214728, -0.10370276, 0.9467699, 0.30474982, -0.30499935, -0.32191104, 0.89629716, 58.20952, 68.80628, 92.08393)
 
 [node name="Car" parent="." unique_id=16832819 instance=ExtResource("9_choun")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 32.096096, 63.476913, 41.157337)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.346442, 0.40672874, -16.732464)
 
 [node name="Marker3D" type="Marker3D" parent="." unique_id=1037108474]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 2.8100145, 1.993, 0, 273.75003)
@@ -155,7 +168,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -30.606972, -10.998234, -250.
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14, -0.4000001, 4)
 
 [node name="house" parent="." unique_id=106585470 instance=ExtResource("10_eb6dy")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -18, 0, 30)
+transform = Transform3D(-0.019370526, 0, -0.99981236, 0, 1, 0, 0.99981236, 0, -0.019370526, -14.944819, -1.6165161, 22.652426)
 
 [node name="Apartment" parent="." unique_id=11485730 instance=ExtResource("10_trceg")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15, 0, 73)
@@ -197,3 +210,24 @@ shape = SubResource("BoxShape3D_muem4")
 [node name="Pause_menu" parent="." unique_id=677972992 instance=ExtResource("13_trceg")]
 unique_name_in_owner = true
 visible = false
+
+[node name="Prediolongo1" parent="." unique_id=775703313 instance=ExtResource("14_a8y0u")]
+transform = Transform3D(0.6336216, 0, 30.057045, 0, 22.683414, 0, -26.789106, 0, 0.7109155, 28.700676, -0.79999924, 21.37439)
+
+[node name="Collision" type="CollisionShape3D" parent="Prediolongo1" unique_id=1602395852]
+transform = Transform3D(5.5436535, 0, 7.4505806e-08, 0, 7.8973465, 0, -1.2516975e-06, 0, 2.7289808, 0.028695583, 2.0296364, -0.016618371)
+shape = SubResource("BoxShape3D_hsxi2")
+
+[node name="building-l2" parent="." unique_id=578403092 instance=ExtResource("15_jbj1t")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 62.395866, -8.14301, 70.928116)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="building-l2" unique_id=1295453041]
+transform = Transform3D(5.795416, 0, 0, 0, 0.99989885, 0.01423195, 0, -0.01423195, 0.99989885, 0.06596756, 1.0325066, 0.02810669)
+shape = SubResource("BoxShape3D_gqrcs")
+
+[node name="Predio2" parent="." unique_id=112805062 instance=ExtResource("16_muem4")]
+transform = Transform3D(0.30171922, 0, 24.998178, 0, 25, 0, -24.998178, 0, 0.30171922, 26.027632, -0.79999924, 62.984962)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Predio2" unique_id=850754347]
+transform = Transform3D(25.000004, 0, 2.9802322e-08, 0, 25.000006, 0, -2.9802322e-08, 0, 25.000004, 0.060222387, 0.4425147, 0.01757896)
+shape = SubResource("BoxShape3D_omgdb")
