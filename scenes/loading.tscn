@@ -1,0 +1,21 @@
+[gd_scene format=3 uid="uid://b5lgddulywbs3"]
+
+[ext_resource type="VideoStream" uid="uid://68rdv13pfyxb" path="res://assets/video/0725-_1_.ogv" id="1_ir5ef"]
+[ext_resource type="Script" uid="uid://v4oirh20xntc" path="res://scripts/loading.gd" id="1_yc7uc"]
+[ext_resource type="AudioStream" uid="uid://bv503bseg6jri" path="res://assets/sounds/caleidoscopioOS.wav" id="3_dhqfv"]
+
+[node name="Node2D" type="Node2D" unique_id=457940604]
+script = ExtResource("1_yc7uc")
+
+[node name="VideoStreamPlayer" type="VideoStreamPlayer" parent="." unique_id=2130929523]
+offset_right = 1152.0
+offset_bottom = 648.0
+stream = ExtResource("1_ir5ef")
+autoplay = true
+expand = true
+
+[node name="CaleidoscopioOs" type="AudioStreamPlayer" parent="." unique_id=2035121801]
+stream = ExtResource("3_dhqfv")
+autoplay = true
+
+[connection signal="finished" from="VideoStreamPlayer" to="." method="_on_video_stream_player_finished"]

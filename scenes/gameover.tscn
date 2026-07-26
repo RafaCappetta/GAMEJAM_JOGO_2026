@@ -1,0 +1,72 @@
+[gd_scene format=3 uid="uid://d0we4a3u71vjq"]
+
+[ext_resource type="Script" uid="uid://bushocmp1lovr" path="res://scripts/gameover.gd" id="1_dy3ie"]
+[ext_resource type="Texture2D" uid="uid://dek4l31fbc5qi" path="res://assets/images/tela_auzl.png" id="1_ncp31"]
+
+[node name="Gameover" type="Control" unique_id=28485817]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_dy3ie")
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=458638476]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_ncp31")
+expand_mode = 1
+
+[node name="sim" type="Button" parent="." unique_id=34796180]
+unique_name_in_owner = true
+self_modulate = Color(1, 1, 1, 0)
+layout_mode = 0
+offset_left = 351.0
+offset_top = 455.0
+offset_right = 412.0
+offset_bottom = 494.0
+text = "SIM"
+
+[node name="sublinhado1" type="ColorRect" parent="sim" unique_id=1936692900]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 34.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="nao" type="Button" parent="." unique_id=48651343]
+unique_name_in_owner = true
+self_modulate = Color(1, 1, 1, 0)
+layout_mode = 0
+offset_left = 742.0
+offset_top = 455.0
+offset_right = 802.0
+offset_bottom = 494.0
+text = "NÃO"
+
+[node name="sublinhado2" type="ColorRect" parent="nao" unique_id=1491696717]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 34.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[connection signal="mouse_entered" from="sim" to="." method="_on_sim_mouse_entered"]
+[connection signal="mouse_exited" from="sim" to="." method="_on_sim_mouse_exited"]
+[connection signal="pressed" from="sim" to="." method="_on_sim_pressed"]
+[connection signal="mouse_entered" from="nao" to="." method="_on_nao_mouse_entered"]
+[connection signal="mouse_exited" from="nao" to="." method="_on_nao_mouse_exited"]
+[connection signal="pressed" from="nao" to="." method="_on_nao_pressed"]

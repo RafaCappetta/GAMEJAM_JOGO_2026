@@ -11,5 +11,7 @@ func _process(delta: float) -> void:
 
 func _on_body_entered(body: Node3D) -> void:
 	if body.is_in_group("Player"):
-		body.eletric_punch = true
-	queue_free()
+		body.eletric_punch = 3
+		%Powerup.play()
+		await get_tree().create_timer(0.4).timeout
+		queue_free()
