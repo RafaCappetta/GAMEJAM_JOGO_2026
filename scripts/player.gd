@@ -32,6 +32,27 @@ const BOB_AMPLITUDE = 0.08
 const BASE_FOV = 75.0
 const FOV_CHANGE = 1.5
 
+"""------Wallrunning------"""
+
+"""Wallrun Nodepath"""
+@export var wallrun_node_path: NodePath
+
+"""Referencia ao Wallrun Nodepath"""
+@onready var wallrun_node = get_node(wallrun_node_path)
+
+"""If wallrun is allowed"""
+var can_wallrun = false
+var wallrun_delay = 0.2
+@onready var wallrun_delay_default = wallrun_delay
+
+"""To know if is Wallrunning"""
+var is_wallrunning
+
+"""Wallrunning Rotation"""
+@export var wallrun_angle: float = 15
+var wallrun_current_angle = 0
+var side = ""
+
 @onready var head : Node3D = $head
 
 var tween: Tween
@@ -71,12 +92,22 @@ func _physics_process(delta: float) -> void:
 	if Input.is_action_just_pressed("jump") and is_on_floor():
 		velocity.y = JUMP_VELOCITY
 		
-	if not is_on_floor() and can_double_jump:
-		if Input.is_action_just_pressed("ui_accept"):
-			velocity.y = JUMP_VELOCITY
-			can_double_jump = false
+	if not is_on_floor():
+		if can_double_jump:
+			if Input.is_action_just_pressed("ui_accept"):
+				velocity.y = JUMP_VELOCITY
+				can_double_jump = false
+		
+		wallrun_delay = clamp(wallrun_delay - delta, 0, wallrun_delay_default)
+		
+		if wallrun_delay == 0:
+			can_wallrun = true
+		
 	elif is_on_floor():
 		can_double_jump = true
+		is_wallrunning = false
+		can_wallrun = false
+		wallrun_delay = wallrun_delay_default
 		
 	if Input.is_action_pressed("run"):
 		total_speed = SPEED + RUN_SPEED
@@ -115,7 +146,58 @@ func _physics_process(delta: float) -> void:
 	var velocity_clamped = clamp(velocity.length(), 0.5, RUN_SPEED * 2)
 	var target_fov = BASE_FOV + FOV_CHANGE * velocity_clamped
 	%camera.fov = lerp(%camera.fov, target_fov, delta * 8.0)
-
+	
+	if can_wallrun:
+		if is_on_wall() and Input.is_action_pressed("up") and Input.is_action_pressed("run"):
+			
+			"""Get collision data and its normal"""
+			var collision = get_slide_collision(0)
+			var normal = collision.get_normal()
+			
+			"""Calculate the direction on which that player shall move"""
+			var wallrun_dir = Vector3.UP.cross(normal)
+			
+			var player_view_dir = %camera.global_transform.basis.z
+			var dot = wallrun_dir.dot(player_view_dir)
+			if dot < 0:
+				wallrun_dir = -wallrun_dir
+			
+			"""Add small push towards the wall"""
+			wallrun_dir += -normal * 0.01
+			
+			"""Enable Wallrunning"""
+			is_wallrunning = true
+			
+			"""Set side to a string, telling which side of player the wall is"""
+			side = get_side_wall(collision.get_position())
+			
+			"""Setting vertical velocity close to 0 and moving direction the newly calculated wallrun direction"""
+			velocity.y = -0.01
+			direction = wallrun_dir
+		
+		else:
+			is_wallrunning = false
+	
+	"""Tilt the view"""
+	if is_wallrunning:
+		print("wallrunning, side: ", side, " angle: ", wallrun_current_angle)
+		if side == "RIGHT":
+			wallrun_current_angle += delta * 60
+			wallrun_current_angle = clamp(wallrun_current_angle, -wallrun_angle, wallrun_angle)
+		elif side == "LEFT":
+			wallrun_current_angle -= delta * 60
+			wallrun_current_angle = clamp(wallrun_current_angle, -wallrun_angle, wallrun_angle)
+	
+	#Return back to normal view
+	else:
+		if wallrun_current_angle > 0:
+			wallrun_current_angle -= delta * 40
+			wallrun_current_angle = max(0, wallrun_current_angle)
+		elif wallrun_current_angle < 0:
+			wallrun_current_angle += delta * 40
+			wallrun_current_angle = min(wallrun_current_angle, 0)
+	
+	wallrun_node.rotation_degrees = Vector3(0, 0, 1) * wallrun_current_angle
 	move_and_slide()
 
 func head_bobbing(time_bob):
@@ -137,3 +219,15 @@ func _on_soco_timer_timeout() -> void:
 func _on_soco_hitbox_body_entered(body: Node3D) -> void:
 	if body.is_in_group("Enemy"):
 		body.get_hit(punch_damage)
+
+func get_side_wall(collision_point):
+	var to_wall = collision_point - global_position
+	var right = head.global_transform.basis.x
+	var dot_right = to_wall.dot(right)
+	
+	if dot_right > 0:
+		return "RIGHT"
+	elif dot_right < 0:
+		return "LEFT"
+	else:
+		return "CENTER"
