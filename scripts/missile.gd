@@ -14,7 +14,7 @@ func _ready() -> void:
 
 func target(pos:Vector3):
 	$AnimationPlayer.play(&"launch")
-	var speed = 20.0
+	var speed = 25.0
 	var forward_direction = -global_transform.basis.z
 	linear_velocity = forward_direction * speed
 	$Area3D.monitoring = true

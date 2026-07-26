@@ -4,11 +4,13 @@
 [ext_resource type="Script" uid="uid://sdnypkgh5d4w" path="res://scripts/camera.gd" id="2_smehm"]
 [ext_resource type="Texture2D" uid="uid://dvu60cdjl3slq" path="res://assets/images/Soco0.png" id="2_tuyoq"]
 [ext_resource type="Texture2D" uid="uid://b7ngnxeiniv42" path="res://assets/images/Soco0.5.png" id="3_fjrip"]
+[ext_resource type="Script" uid="uid://jrleb6efrqd" path="res://scripts/screen_shake.gd" id="3_qfm1y"]
 [ext_resource type="Texture2D" uid="uid://c5cqj1ghyoo4p" path="res://assets/images/Soco2.png" id="4_smehm"]
 [ext_resource type="Texture2D" uid="uid://cmnpe2mlgfjcd" path="res://assets/images/Soco3.png" id="5_ur7pv"]
 [ext_resource type="Texture2D" uid="uid://bovkm17gp47t6" path="res://assets/images/Soco.png" id="6_y4r1p"]
 [ext_resource type="Texture2D" uid="uid://h6cmx8ugciji" path="res://assets/images/Rostos.png" id="7_fjrip"]
 [ext_resource type="Texture2D" uid="uid://dj7j1sg4w2dr3" path="res://assets/images/Moldura.png" id="8_smehm"]
+[ext_resource type="Shader" uid="uid://dd2e7t5kid2xx" path="res://scenes/player.gdshader" id="10_fulsm"]
 [ext_resource type="PackedScene" uid="uid://mwe4xlg0ssao" path="res://scenes/parry_light.tscn" id="10_y4r1p"]
 [ext_resource type="AudioStream" uid="uid://bwhnn8kxqxq1h" path="res://assets/sounds/pulo.wav" id="11_qfm1y"]
 [ext_resource type="AudioStream" uid="uid://ufwyao4ejkii" path="res://assets/sounds/corrida.wav" id="12_fulsm"]
@@ -76,7 +78,18 @@ animations = [{
 "speed": 7.0
 }]
 
-[node name="Player" type="CharacterBody3D" unique_id=99861014]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_4r5pv"]
+shader = ExtResource("10_fulsm")
+shader_parameter/progress = 0.0
+shader_parameter/block_size = 0.435
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_fulsm"]
+shader = ExtResource("10_fulsm")
+shader_parameter/progress = 0.0
+shader_parameter/block_size = 1.0
+
+[node name="Player" type="CharacterBody3D" unique_id=99861014 groups=["Player"]]
+collision_layer = 9
 script = ExtResource("1_3vyb7")
 wallrun_node_path = NodePath("head/Wallrun")
 
@@ -120,6 +133,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.47716522, 0)
 [node name="camera" type="Camera3D" parent="head/Wallrun" unique_id=1098633085]
 unique_name_in_owner = true
 script = ExtResource("2_smehm")
+
+[node name="ScreenShake" type="Node3D" parent="head/Wallrun" unique_id=662958318]
+script = ExtResource("3_qfm1y")
 
 [node name="dash_cooldown" type="Timer" parent="." unique_id=1982997825]
 unique_name_in_owner = true
@@ -177,6 +193,7 @@ size_flags_vertical = 4
 
 [node name="sprite" type="Sprite2D" parent="CanvasLayer/rosto" unique_id=43628986]
 unique_name_in_owner = true
+material = SubResource("ShaderMaterial_4r5pv")
 position = Vector2(124.00001, -74.00001)
 scale = Vector2(0.36718753, 0.36718753)
 texture = ExtResource("7_fjrip")
@@ -184,6 +201,7 @@ hframes = 3
 
 [node name="Sprite2D" type="Sprite2D" parent="CanvasLayer/rosto/sprite" unique_id=566453736]
 z_index = -1
+material = SubResource("ShaderMaterial_fulsm")
 position = Vector2(0, -14)
 texture = ExtResource("8_smehm")
 

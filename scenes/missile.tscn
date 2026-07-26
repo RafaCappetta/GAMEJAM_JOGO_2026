@@ -1,8 +1,8 @@
 [gd_scene format=3 uid="uid://bwdbxj7f3eqac"]
 
 [ext_resource type="Script" uid="uid://ueupsr1h3kk6" path="res://scripts/missile.gd" id="1_35udt"]
-[ext_resource type="PackedScene" uid="uid://b6woipifrwlh1" path="res://assets/missile.glb" id="1_np454"]
-[ext_resource type="Texture2D" uid="uid://djkoi1qy46ydk" path="res://brackeys_particle_bundle/particles/alpha/smoke_07_a.png" id="3_2swxv"]
+[ext_resource type="PackedScene" uid="uid://d1bfoosfsqu8m" path="res://assets/missile.glb" id="1_np454"]
+[ext_resource type="Texture2D" uid="uid://bhpd116lc7f7g" path="res://brackeys_particle_bundle/particles/alpha/smoke_07_a.png" id="3_2swxv"]
 
 [sub_resource type="Curve" id="Curve_bd00w"]
 _data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.105042, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]

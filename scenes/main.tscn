@@ -13,16 +13,16 @@
 [ext_resource type="PackedScene" uid="uid://dhg4v4ukgfa5b" path="res://assets/buildings/Modern House.glb" id="11_ya4ey"]
 [ext_resource type="PackedScene" uid="uid://b2akfit6axr5g" path="res://assets/modelstreets/road-crossroad-path.glb" id="13_2wyq8"]
 [ext_resource type="PackedScene" uid="uid://dveftpj2ytq0" path="res://scenes/pause_menu.tscn" id="13_trceg"]
-[ext_resource type="PackedScene" uid="uid://jb8bb86groo" path="res://assets/modelscity/building-skyscraper-e.glb" id="14_a8y0u"]
-[ext_resource type="PackedScene" uid="uid://cm0q00pqy07k3" path="res://assets/modelscity/building-l.glb" id="15_jbj1t"]
-[ext_resource type="PackedScene" uid="uid://50nesudbauud" path="res://assets/modelscity/detail-parasol-b.glb" id="16_dp3eg"]
-[ext_resource type="PackedScene" uid="uid://c3567ps48y7wb" path="res://assets/modelscity/building-k.glb" id="16_muem4"]
-[ext_resource type="PackedScene" uid="uid://c40gqj30wwmee" path="res://assets/modelscity/detail-overhang-wide.glb" id="17_0ld40"]
-[ext_resource type="PackedScene" uid="uid://c5r4dfhbyic3a" path="res://assets/modelscity/building-d.glb" id="17_muem4"]
-[ext_resource type="PackedScene" uid="uid://bmdjhawq75452" path="res://assets/modelscity/building-i.glb" id="20_gqmmt"]
-[ext_resource type="PackedScene" uid="uid://dvp2v7snrbtmw" path="res://assets/modelscity/building-j.glb" id="21_pm3ni"]
-[ext_resource type="PackedScene" uid="uid://36fxdcykxrjj" path="res://assets/modelscity/building-skyscraper-d.glb" id="21_yc10j"]
-[ext_resource type="PackedScene" uid="uid://ckaofhxeujrmo" path="res://assets/modelscity/building-n.glb" id="22_jscy8"]
+[ext_resource type="PackedScene" uid="uid://cyjqbqjtoi28b" path="res://assets/modelscity/building-skyscraper-e.glb" id="14_a8y0u"]
+[ext_resource type="PackedScene" uid="uid://ci7lnh3f6nbqv" path="res://assets/modelscity/building-l.glb" id="15_jbj1t"]
+[ext_resource type="PackedScene" uid="uid://3mg2q0uamdyw" path="res://assets/modelscity/detail-parasol-b.glb" id="16_dp3eg"]
+[ext_resource type="PackedScene" uid="uid://bwiq07krwyn81" path="res://assets/modelscity/building-k.glb" id="16_muem4"]
+[ext_resource type="PackedScene" uid="uid://7ydk0ss3g7ka" path="res://assets/modelscity/detail-overhang-wide.glb" id="17_0ld40"]
+[ext_resource type="PackedScene" uid="uid://duhjwa28a75s6" path="res://assets/modelscity/building-d.glb" id="17_muem4"]
+[ext_resource type="PackedScene" uid="uid://bshdwtvx44b8m" path="res://assets/modelscity/building-i.glb" id="20_gqmmt"]
+[ext_resource type="PackedScene" uid="uid://cg5l6ged3qe08" path="res://assets/modelscity/building-j.glb" id="21_pm3ni"]
+[ext_resource type="PackedScene" uid="uid://b1iefm7gdvt12" path="res://assets/modelscity/building-skyscraper-d.glb" id="21_yc10j"]
+[ext_resource type="PackedScene" uid="uid://dfncwj6eru4b8" path="res://assets/modelscity/building-n.glb" id="22_jscy8"]
 [ext_resource type="PackedScene" uid="uid://deplnf4dnfs3j" path="res://assets/modelstreets/road-crossing.glb" id="25_vxglm"]
 [ext_resource type="PackedScene" uid="uid://cxvx8d3vn7bus" path="res://assets/modelstreets/road-straight.glb" id="26_2f3dj"]
 
@@ -34,13 +34,13 @@ ground_horizon_color = Color(0.71180034, 0.29661003, 0.65547603, 1)
 ground_curve = 0.38054454
 ground_energy_multiplier = 0.9
 
-[sub_resource type="Sky" id="Sky_4cdbh"]
+[sub_resource type="Sky" id="Sky_og1vs"]
 sky_material = SubResource("ProceduralSkyMaterial_o6xl0")
 
 [sub_resource type="Environment" id="Environment_eav63"]
 background_mode = 2
 background_energy_multiplier = 0.51
-sky = SubResource("Sky_4cdbh")
+sky = SubResource("Sky_og1vs")
 sky_custom_fov = 7.4
 ambient_light_source = 3
 ambient_light_color = Color(0.36091453, 0.43836638, 0.51917833, 1)
@@ -50,6 +50,7 @@ reflected_light_source = 2
 tonemap_mode = 2
 tonemap_exposure = 1.73
 ssao_enabled = true
+ssao_sharpness = 0.41
 glow_enabled = true
 glow_levels/1 = 0.98
 glow_levels/2 = 1.45
@@ -60,16 +61,22 @@ glow_levels/6 = 1.31
 glow_levels/7 = 0.82
 glow_normalized = true
 glow_intensity = 0.92
-glow_strength = 0.61
-glow_mix = 0.846
+glow_strength = 0.69
+glow_mix = 0.911
 glow_blend_mode = 4
 glow_hdr_threshold = 0.22
-glow_hdr_scale = 2.9
-glow_map_strength = 0.74
-fog_light_color = Color(0.51057, 0.09686681, 0.22606617, 1)
-fog_sun_scatter = 0.27
-fog_aerial_perspective = 0.104
-fog_sky_affect = 0.665
+glow_hdr_scale = 4.0
+glow_map_strength = 0.66
+fog_depth_curve = 0.6372803
+fog_depth_begin = 43.0
+fog_depth_end = 3234.0
+volumetric_fog_density = 0.0706
+volumetric_fog_emission_energy = 159.35
+volumetric_fog_gi_inject = 4.95
+volumetric_fog_anisotropy = 0.67
+volumetric_fog_length = 0.01
+volumetric_fog_detail_spread = 0.81225246
+volumetric_fog_sky_affect = 0.27
 adjustment_enabled = true
 adjustment_brightness = 0.97
 adjustment_contrast = 1.08
@@ -160,6 +167,8 @@ shadow_blur = 3.801
 [node name="MeshInstance3D4" type="CSGBox3D" parent="." unique_id=392593160]
 transform = Transform3D(34.172585, 0, 0, 0, 1, 0, 0, 0, 27.40657, 0, -1.3000001, 0)
 use_collision = true
+collision_layer = 129
+collision_mask = 0
 size = Vector3(14, 1, 20)
 material = SubResource("StandardMaterial3D_upktl")
 
@@ -423,3 +432,13 @@ transform = Transform3D(67.278854, 0, -0.28162175, 0, 49, 0, 0.7440354, 0, 25.46
 [node name="CollisionShape3D" type="CollisionShape3D" parent="building-l5" unique_id=1425646133]
 transform = Transform3D(39.997948, -1.0310475, 2.1707306, 0.738023, 48.966797, 0.8121503, -3.447146, -1.4798235, 25.361317, 0.073578596, 0.7529907, 0.11370993)
 shape = SubResource("BoxShape3D_qg54s")
+
+[node name="Marker3D4" type="Marker3D" parent="." unique_id=370316066]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 2.8100145, -0.86579895, 0, 254.93066)
+script = ExtResource("10_ya4ey")
+x_axis = true
+left = false
+
+[node name="Timer" type="Timer" parent="Marker3D4" unique_id=551310629]
+process_callback = 0
+autostart = true

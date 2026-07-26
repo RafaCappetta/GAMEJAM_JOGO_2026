@@ -14,5 +14,5 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta: float) -> void:
-	look_at(player.global_position )
+	look_at(player.position )
 	pass

@@ -8,18 +8,6 @@
 [ext_resource type="PackedScene" uid="uid://cguvt81kq4lf4" path="res://scenes/ranged_enemy.tscn" id="6_lpvoh"]
 [ext_resource type="AudioStream" uid="uid://csthge2pyb1ol" path="res://assets/musics/fase1vaporwave.ogg" id="7_at5dv"]
 
-[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_errlg"]
-sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
-ground_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
-
-[sub_resource type="Sky" id="Sky_bl13t"]
-sky_material = SubResource("ProceduralSkyMaterial_errlg")
-
-[sub_resource type="Environment" id="Environment_iyx0m"]
-background_mode = 2
-sky = SubResource("Sky_bl13t")
-glow_enabled = true
-
 [sub_resource type="NavigationMesh" id="NavigationMesh_g4v7s"]
 vertices = PackedVector3Array(-15.091797, -0.0872004, -5.979431, -14.091797, -0.0872004, -6.229431, -14.091797, -0.0872004, -15.729431, -25.591797, -0.0872004, -15.729431, -25.591797, -0.0872004, -3.9794312, -15.091797, -0.0872004, -3.9794312, 1.4082031, -0.0872004, -8.479431, 3.4082031, -0.0872004, -8.729431, 3.4082031, -0.0872004, -15.729431, -13.341797, -0.0872004, -5.979431, -13.341797, -0.0872004, -4.979431, 1.4082031, -0.0872004, -5.229431, 5.408203, -0.0872004, -8.479431, 5.408203, -0.0872004, -5.479431, 7.408203, -0.0872004, -5.229431, 7.408203, -0.0872004, -3.2294312, 16.908203, -0.0872004, -3.2294312, 16.908203, -0.0872004, -15.729431, 2.4082031, 5.4128, -7.729431, 2.4082031, 5.4128, -5.229431, 4.408203, 5.4128, -5.229431, 4.408203, 5.4128, -7.729431, 2.6582031, -0.0872004, -7.479431, 2.6582031, -0.0872004, -5.479431, 4.158203, -0.0872004, -5.479431, 4.158203, -0.0872004, -7.479431, 3.4082031, -0.0872004, -1.4794312, 3.4082031, -0.0872004, -4.229431, 1.6582031, -0.0872004, -4.229431, -13.341797, -0.0872004, 5.520569, -14.091797, -0.0872004, 5.770569, -14.091797, -0.0872004, 16.270569, 3.1582031, -0.0872004, 16.270569, 4.408203, 1.9127996, -4.229431, 4.408203, 1.9127996, -1.9794312, 6.408203, 1.9127996, -1.9794312, 6.408203, 1.9127996, -4.479431, 4.658203, -0.0872004, -4.229431, 4.658203, -0.0872004, -2.2294312, 6.158203, -0.0872004, -2.2294312, 6.158203, -0.0872004, -4.229431, -25.591797, -0.0872004, 3.5205688, -15.091797, -0.0872004, 3.5205688, 7.158203, -0.0872004, -0.97943115, 3.6582031, -0.0872004, -0.97943115, 16.908203, -0.0872004, 16.270569, -15.091797, -0.0872004, 5.520569, -25.591797, -0.0872004, 16.270569)
 polygons = [PackedInt32Array(1, 0, 2), PackedInt32Array(2, 0, 3), PackedInt32Array(3, 0, 4), PackedInt32Array(0, 5, 4), PackedInt32Array(8, 7, 6), PackedInt32Array(1, 2, 9), PackedInt32Array(9, 2, 6), PackedInt32Array(6, 2, 8), PackedInt32Array(10, 9, 11), PackedInt32Array(11, 9, 6), PackedInt32Array(14, 13, 12), PackedInt32Array(12, 7, 8), PackedInt32Array(16, 15, 14), PackedInt32Array(12, 8, 14), PackedInt32Array(14, 8, 17), PackedInt32Array(14, 17, 16), PackedInt32Array(21, 20, 18), PackedInt32Array(18, 20, 19), PackedInt32Array(25, 24, 22), PackedInt32Array(22, 24, 23), PackedInt32Array(28, 27, 26), PackedInt32Array(31, 30, 29), PackedInt32Array(28, 10, 11), PackedInt32Array(28, 26, 10), PackedInt32Array(10, 26, 29), PackedInt32Array(31, 29, 32), PackedInt32Array(32, 29, 26), PackedInt32Array(34, 33, 35), PackedInt32Array(35, 33, 36), PackedInt32Array(40, 39, 37), PackedInt32Array(37, 39, 38), PackedInt32Array(4, 5, 41), PackedInt32Array(41, 5, 42), PackedInt32Array(43, 15, 16), PackedInt32Array(32, 26, 44), PackedInt32Array(32, 44, 43), PackedInt32Array(16, 45, 43), PackedInt32Array(43, 45, 32), PackedInt32Array(41, 42, 46), PackedInt32Array(30, 31, 46), PackedInt32Array(46, 31, 47), PackedInt32Array(46, 47, 41)]
@@ -31,15 +19,63 @@ albedo_color = Color(0.32156864, 1, 1, 1)
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_g4v7s"]
 albedo_color = Color(1, 0.3372549, 1, 1)
 
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_at5dv"]
+sky_top_color = Color(0.36991724, 0.3687137, 0.867025, 1)
+sky_horizon_color = Color(0.61975956, 0.2555142, 0.666267, 1)
+ground_bottom_color = Color(0.67995036, 0.5212133, 0.13233033, 1)
+ground_horizon_color = Color(0.71180034, 0.29661003, 0.65547603, 1)
+ground_curve = 0.38054454
+ground_energy_multiplier = 0.9
+
+[sub_resource type="Sky" id="Sky_4cdbh"]
+sky_material = SubResource("ProceduralSkyMaterial_at5dv")
+
+[sub_resource type="Environment" id="Environment_jcd4p"]
+background_mode = 2
+background_energy_multiplier = 0.51
+sky = SubResource("Sky_4cdbh")
+sky_custom_fov = 7.4
+ambient_light_source = 3
+ambient_light_color = Color(0.36091453, 0.43836638, 0.51917833, 1)
+ambient_light_sky_contribution = 0.4
+ambient_light_energy = 10.37
+reflected_light_source = 2
+tonemap_mode = 2
+tonemap_exposure = 1.73
+ssao_enabled = true
+glow_enabled = true
+glow_levels/1 = 0.98
+glow_levels/2 = 1.45
+glow_levels/3 = 0.89
+glow_levels/4 = 0.92
+glow_levels/5 = 0.65
+glow_levels/6 = 1.31
+glow_levels/7 = 0.82
+glow_normalized = true
+glow_intensity = 0.92
+glow_strength = 0.61
+glow_mix = 0.846
+glow_blend_mode = 4
+glow_hdr_threshold = 0.22
+glow_hdr_scale = 2.9
+glow_map_strength = 0.74
+fog_enabled = true
+fog_mode = 1
+fog_light_color = Color(0.51057, 0.09686681, 0.22606617, 1)
+fog_light_energy = 1.16
+fog_sun_scatter = 0.43
+fog_density = 0.905
+fog_aerial_perspective = 0.032
+fog_sky_affect = 0.593
+adjustment_enabled = true
+adjustment_brightness = 0.97
+adjustment_contrast = 1.08
+adjustment_saturation = 0.88
+
+[sub_resource type="Compositor" id="Compositor_uacia"]
+
 [node name="Test" type="Node3D" unique_id=50567568]
 script = ExtResource("1_iyx0m")
-
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1227280284]
-transform = Transform3D(-0.8660254, -0.43301278, 0.25, 0, 0.49999997, 0.86602545, -0.50000006, 0.75, -0.43301266, 0, 0, 0)
-shadow_enabled = true
-
-[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1436501739]
-environment = SubResource("Environment_iyx0m")
 
 [node name="Player" parent="." unique_id=99861014 instance=ExtResource("1_errlg")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.89083576, 0)
@@ -95,3 +131,18 @@ stream = ExtResource("7_at5dv")
 volume_db = -10.0
 autoplay = true
 parameters/looping = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1073882233]
+unique_name_in_owner = true
+environment = SubResource("Environment_jcd4p")
+compositor = SubResource("Compositor_uacia")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1761737934]
+transform = Transform3D(-0.9068859, 0.17598504, 0.3828669, 0.11481066, -0.7710361, 0.62635607, 0.40543348, 0.6119907, 0.6790366, 92.759125, 69.005875, 166.38905)
+light_color = Color(0.8062357, 0.24103633, 0.4098023, 1)
+light_energy = 5.44
+light_indirect_energy = 1.475
+light_specular = 3.218
+shadow_enabled = true
+shadow_opacity = 0.22
+shadow_blur = 3.801
