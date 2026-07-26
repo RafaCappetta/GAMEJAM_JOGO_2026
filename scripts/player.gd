@@ -12,10 +12,15 @@ extends CharacterBody3D
 var life = 100
 
 var punch_damage = 30
+var tough_dash_damage = 60
 
 const SPEED = 5.0
 const RUN_SPEED = 7.5
 var total_speed = SPEED
+
+const TOUGH_DASH = 200
+var can_tough_dash = false
+var carregando_tough_dash = false
 
 const DASH = 100
 var can_dash = true
@@ -57,7 +62,6 @@ var side = ""
 
 var tween: Tween
 var dash_velocity = 0
-
 var eletric_punch = 0
 
 func _ready() -> void:
@@ -123,7 +127,30 @@ func _physics_process(delta: float) -> void:
 		tween.tween_property(self, "dash_velocity", 0, 0.3).set_ease(Tween.EASE_OUT)
 		%dash_cooldown.start()
 		can_dash = false
-		
+	
+	if Input.is_action_just_pressed("release_skill"):
+		%Tough_dash_charge.start()
+		can_tough_dash = false
+		carregando_tough_dash = true
+		%Tough_dash_hitbox.monitoring = false
+	
+	if Input.is_action_just_released("release_skill"):
+		if can_tough_dash:
+			can_tough_dash = false
+			carregando_tough_dash = false
+			dash_velocity = TOUGH_DASH
+			%Tough_dash_hitbox.global_transform.basis = %camera.global_transform.basis
+			%Tough_dash_hitbox.monitoring = true
+			%Tough_dash_hits.start()
+			
+			if tween:
+				tween.stop()
+			tween = create_tween()
+			tween.tween_property(self, "dash_velocity", 0, 0.3).set_ease(Tween.EASE_OUT)
+		else:
+			carregando_tough_dash = false
+			%Tough_dash_charge.stop()
+	
 	if Input.is_action_just_pressed("soco") and eletric_punch > 0:
 		%soco_hitbox.global_transform.basis = %camera.global_transform.basis
 		%soco_hitbox.monitoring = true
@@ -238,3 +265,14 @@ func _on_soco_hitbox_area_entered(area: Area3D) -> void:
 		print("PARRY")
 		%Parry_light.parry()
 		area.parry = true
+
+func _on_tough_dash_charge_timeout() -> void:
+	if carregando_tough_dash:
+		can_tough_dash = true
+
+func _on_tough_dash_hits_timeout() -> void:
+	%Tough_dash_hitbox.monitoring = false
+
+func _on_tough_dash_hitbox_body_entered(body: Node3D) -> void:
+	if body.is_in_group("Enemy"):
+		body.get_hit(tough_dash_damage)

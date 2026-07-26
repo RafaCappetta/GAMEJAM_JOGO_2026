@@ -26,6 +26,10 @@ albedo_color = Color(1, 0.31, 0.31, 1)
 material = SubResource("StandardMaterial3D_57qmd")
 size = Vector3(1.5809326, 1.4013062, 1.2149048)
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_y4r1p"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_d2wvv"]
+
 [sub_resource type="SpriteFrames" id="SpriteFrames_d2wvv"]
 animations = [{
 "frames": [],
@@ -90,6 +94,18 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.48561788, 0.20065308, -1.13
 visible = false
 mesh = SubResource("BoxMesh_yf5fn")
 
+[node name="Tough_dash_hitbox" type="Area3D" parent="." unique_id=1839634667]
+unique_name_in_owner = true
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Tough_dash_hitbox" unique_id=570677006]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.421, -1)
+shape = SubResource("BoxShape3D_y4r1p")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Tough_dash_hitbox" unique_id=1317956053]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.421, -1)
+visible = false
+mesh = SubResource("BoxMesh_d2wvv")
+
 [node name="head" type="Node3D" parent="." unique_id=1777252901]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.47716522, 0)
 
@@ -106,6 +122,15 @@ one_shot = true
 [node name="soco_timer" type="Timer" parent="." unique_id=1022115626]
 unique_name_in_owner = true
 wait_time = 0.3
+
+[node name="Tough_dash_charge" type="Timer" parent="." unique_id=1269027829]
+unique_name_in_owner = true
+one_shot = true
+
+[node name="Tough_dash_hits" type="Timer" parent="." unique_id=1826989814]
+unique_name_in_owner = true
+wait_time = 0.1
+one_shot = true
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1868151780]
 
@@ -187,5 +212,8 @@ unique_name_in_owner = true
 
 [connection signal="area_entered" from="soco_hitbox" to="." method="_on_soco_hitbox_area_entered"]
 [connection signal="body_entered" from="soco_hitbox" to="." method="_on_soco_hitbox_body_entered"]
+[connection signal="body_entered" from="Tough_dash_hitbox" to="." method="_on_tough_dash_hitbox_body_entered"]
 [connection signal="timeout" from="dash_cooldown" to="." method="_on_dash_cooldown_timeout"]
 [connection signal="timeout" from="soco_timer" to="." method="_on_soco_timer_timeout"]
+[connection signal="timeout" from="Tough_dash_charge" to="." method="_on_tough_dash_charge_timeout"]
+[connection signal="timeout" from="Tough_dash_hits" to="." method="_on_tough_dash_hits_timeout"]
