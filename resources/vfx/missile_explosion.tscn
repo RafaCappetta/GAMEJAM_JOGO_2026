@@ -1,8 +1,8 @@
 [gd_scene format=3 uid="uid://q6yc8c1iswjd"]
 
-[ext_resource type="Texture2D" uid="uid://d04ju851m6u7k" path="res://brackeys_particle_bundle/particles/alpha/flame_01_a.png" id="1_w7gl3"]
-[ext_resource type="Texture2D" uid="uid://djkoi1qy46ydk" path="res://brackeys_particle_bundle/particles/alpha/smoke_07_a.png" id="2_ndw5g"]
-[ext_resource type="Texture2D" uid="uid://w2e77tvgfexh" path="res://brackeys_particle_bundle/particles/alpha/trace_01_a.png" id="3_vnnj1"]
+[ext_resource type="Texture2D" uid="uid://il31s1sxewqp" path="res://brackeys_particle_bundle/particles/alpha/flame_01_a.png" id="1_w7gl3"]
+[ext_resource type="Texture2D" uid="uid://bhpd116lc7f7g" path="res://brackeys_particle_bundle/particles/alpha/smoke_07_a.png" id="2_ndw5g"]
+[ext_resource type="Texture2D" uid="uid://c4qox4e344rpo" path="res://brackeys_particle_bundle/particles/alpha/trace_01_a.png" id="3_vnnj1"]
 
 [sub_resource type="Gradient" id="Gradient_dg77c"]
 offsets = PackedFloat32Array(0, 0.15566)

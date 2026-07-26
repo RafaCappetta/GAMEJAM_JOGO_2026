@@ -16,6 +16,7 @@ func spawn_car() -> void:
 	car.global_transform = global_transform
 	if int(x_axis) == 0:
 		car.linear_velocity.z=  speed * (int(!left) * 2 - 1)
+		look_at(Vector3(0,left,0))
 	if int(x_axis) == 1: 
 		car.linear_velocity.x=  speed * (int(!left) * 2 - 1)
 		look_at(Vector3(left,0,0))
