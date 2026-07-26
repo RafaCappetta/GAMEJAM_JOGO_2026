@@ -11,6 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://cval6hkq4y7ee" path="res://scenes/buildings/apartment.tscn" id="10_trceg"]
 [ext_resource type="Script" uid="uid://bjxnlhsjwy4xf" path="res://scenes/car_spawner.gd" id="10_ya4ey"]
 [ext_resource type="PackedScene" uid="uid://507hmg0ufhvo" path="res://assets/buildings/Modern House.glb" id="11_ya4ey"]
+[ext_resource type="PackedScene" uid="uid://bwdbxj7f3eqac" path="res://scenes/missile.tscn" id="12_eb6dy"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_o6xl0"]
 sky_top_color = Color(0.36991724, 0.3687137, 0.867025, 1)
@@ -35,6 +36,7 @@ ambient_light_energy = 10.37
 reflected_light_source = 2
 tonemap_mode = 2
 tonemap_exposure = 1.73
+ssao_enabled = true
 glow_enabled = true
 glow_levels/1 = 0.98
 glow_levels/2 = 1.45
@@ -69,9 +71,6 @@ roughness = 0.9
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jyhfs"]
 albedo_texture = ExtResource("1_tefeu")
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_wvhbo"]
-size = Vector3(19.546753, 45.601868, 30)
-
 [sub_resource type="BoxShape3D" id="BoxShape3D_ifow5"]
 size = Vector3(1.0776367, 0.6989746, 0.9100342)
 
@@ -95,11 +94,14 @@ environment = SubResource("Environment_eav63")
 compositor = SubResource("Compositor_sfylq")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=33541906]
-transform = Transform3D(-0.9068861, 0.17598508, 0.38286686, 0.40852106, 0.14448157, 0.9012413, 0.10328777, 0.9737324, -0.20292193, 92.759125, 69.005875, 166.38905)
+transform = Transform3D(-0.9068859, 0.17598504, 0.3828669, 0.11481066, -0.7710361, 0.62635607, 0.40543348, 0.6119907, 0.6790366, 92.759125, 69.005875, 166.38905)
 light_color = Color(0.8062357, 0.24103633, 0.4098023, 1)
 light_energy = 5.44
 light_indirect_energy = 1.475
 light_specular = 3.218
+shadow_enabled = true
+shadow_opacity = 0.22
+shadow_blur = 3.801
 
 [node name="MeshInstance3D4" type="CSGBox3D" parent="." unique_id=392593160]
 transform = Transform3D(34.172585, 0, 0, 0, 1, 0, 0, 0, 27.40657, 0, -1.3000001, 0)
@@ -115,31 +117,30 @@ material = SubResource("StandardMaterial3D_jyhfs")
 
 [node name="Player" parent="." unique_id=99861014 instance=ExtResource("2_0wfyh")]
 unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 29.676598, 59.89335, 47.071594)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 29.676598, 58.89335, 51.071594)
 
-[node name="Node3D" type="Node3D" parent="." unique_id=713710218]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 0, 0)
-
-[node name="StaticBody3D" type="StaticBody3D" parent="Node3D" unique_id=935542749]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Node3D/StaticBody3D" unique_id=1789839857]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.335222, 25.4282, -13.966305)
-shape = SubResource("BoxShape3D_wvhbo")
-
-[node name="StaticBody3D" parent="." unique_id=579967672 instance=ExtResource("3_ya4ey")]
+[node name="Building" parent="." unique_id=579967672 instance=ExtResource("3_ya4ey")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 32, -3, 55)
 
 [node name="building" type="Node3D" parent="." unique_id=1453130439]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 29.35152, 59.54318, 47.44201)
 
-[node name="Heli" parent="." unique_id=1365599492 instance=ExtResource("7_85g3d")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 58.20952, 68.80628, 48.225937)
-
 [node name="Car" parent="." unique_id=16832819 instance=ExtResource("9_choun")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 32.096096, 63.476913, 41.157337)
+
+[node name="Marker3D2" type="Marker3D" parent="." unique_id=1108387692]
+transform = Transform3D(0.99999994, 0, 0, 0, 0.99999994, 0, 0, 0, 2.8100142, 1.993, 0, 273.75003)
+script = ExtResource("10_ya4ey")
+left = false
+
+[node name="Timer" type="Timer" parent="Marker3D2" unique_id=1638376983]
+process_callback = 0
+autostart = true
 
 [node name="Marker3D" type="Marker3D" parent="." unique_id=1037108474]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 2.8100145, 1.993, 0, 273.75003)
 script = ExtResource("10_ya4ey")
+left = false
 
 [node name="Timer" type="Timer" parent="Marker3D" unique_id=1292561098]
 process_callback = 0
@@ -190,3 +191,9 @@ shape = SubResource("BoxShape3D_a8y0u")
 [node name="CollisionShape3D7" type="CollisionShape3D" parent="StaticBody3D2" unique_id=338842723]
 transform = Transform3D(-5.176789e-07, 0, 19.385077, 0, 11.843113, 0, -11.843113, 0, -8.473486e-07, -7.733268, -1.1692942, -2.4414368)
 shape = SubResource("BoxShape3D_muem4")
+
+[node name="Missile" parent="." unique_id=371792468 instance=ExtResource("12_eb6dy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 36, 61, 50)
+
+[node name="Heli" parent="." unique_id=221491160 instance=ExtResource("7_85g3d")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 45, 80, 53)
