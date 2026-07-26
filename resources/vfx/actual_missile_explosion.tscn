@@ -376,6 +376,8 @@ collision_mask = 8
 shape = SubResource("SphereShape3D_wvhbo")
 
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="." unique_id=1570093690]
+volume_db = -20.0
+unit_size = 3.7
 
 [connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]
 [connection signal="body_entered" from="Area3D2" to="." method="_on_area_3d_2_body_entered"]
