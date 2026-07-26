@@ -1,12 +1,7 @@
 [gd_scene format=3 uid="uid://rfn5sw2fhvh4"]
 
-[ext_resource type="PackedScene" uid="uid://deuue1nwhwrj5" path="res://assets/buildings/house.glb" id="1_d7po0"]
-
-[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_wvhbo"]
+[ext_resource type="PackedScene" uid="uid://knm56sq1bjye" path="res://assets/buildings/house.glb" id="1_d7po0"]
 
 [node name="house" type="StaticBody3D" unique_id=106585470]
 
 [node name="asset" parent="." unique_id=1210824048 instance=ExtResource("1_d7po0")]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=604074664]
-shape = SubResource("ConvexPolygonShape3D_wvhbo")

@@ -68,7 +68,8 @@ turbulence_influence_max = 0.01
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lquwl"]
 transparency = 1
-diffuse_mode = 2
+shading_mode = 0
+diffuse_mode = 3
 specular_mode = 2
 vertex_color_use_as_albedo = true
 albedo_texture = ExtResource("3_2swxv")
@@ -81,53 +82,6 @@ particles_anim_loop = false
 [sub_resource type="QuadMesh" id="QuadMesh_0qkjn"]
 material = SubResource("StandardMaterial3D_lquwl")
 size = Vector2(0.5, 0.5)
-
-[sub_resource type="Curve" id="Curve_xaist"]
-_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.239496, 1), 0.0, 0.0, 0, 0, Vector2(0.680672, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
-point_count = 4
-
-[sub_resource type="CurveTexture" id="CurveTexture_7adko"]
-curve = SubResource("Curve_xaist")
-
-[sub_resource type="Curve" id="Curve_71ui3"]
-_limits = [0.0, 10.0, 0.0, 1.0]
-_data = [Vector2(0, 10), 0.0, 0.0, 0, 0]
-point_count = 1
-
-[sub_resource type="CurveTexture" id="CurveTexture_2cq48"]
-curve = SubResource("Curve_71ui3")
-
-[sub_resource type="Curve" id="Curve_05xol"]
-_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.314607), 0.0, 0.0, 0, 0]
-point_count = 2
-
-[sub_resource type="CurveTexture" id="CurveTexture_08sgb"]
-curve = SubResource("Curve_05xol")
-
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_vnfvh"]
-particle_flag_align_y = true
-emission_shape = 1
-emission_sphere_radius = 0.1
-direction = Vector3(0, 0, 1)
-spread = 43.295
-initial_velocity_min = 1.0
-initial_velocity_max = 2.0
-gravity = Vector3(0, 0, 0)
-scale_min = 0.04
-scale_max = 0.099999994
-scale_curve = SubResource("CurveTexture_08sgb")
-color = Color(1, 0.72281, 0.345682, 1)
-alpha_curve = SubResource("CurveTexture_7adko")
-emission_curve = SubResource("CurveTexture_2cq48")
-turbulence_enabled = true
-turbulence_noise_strength = 2.1
-turbulence_noise_scale = 0.901
-turbulence_influence_min = 0.0
-turbulence_influence_max = 0.01
-
-[sub_resource type="PrismMesh" id="PrismMesh_jbj1t"]
-left_to_right = 0.7
-size = Vector3(0.35, 0.865, 0.14)
 
 [sub_resource type="Curve" id="Curve_dgh12"]
 _data = [Vector2(0.0882353, 0), 0.0, 0.0, 0, 0, Vector2(0.428571, 0.834465), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
@@ -176,8 +130,7 @@ angular_velocity_min = -30.0
 angular_velocity_max = 30.0
 velocity_limit_curve = SubResource("CurveTexture_074og")
 gravity = Vector3(0, 0, 0)
-scale_min = 0.6
-scale_max = 0.9
+scale_max = 1.5
 scale_curve = SubResource("CurveTexture_getpj")
 color_initial_ramp = SubResource("GradientTexture1D_2cqfq")
 alpha_curve = SubResource("CurveTexture_yaehf")
@@ -227,22 +180,10 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Fire/Embers:emitting")
+tracks/1/path = NodePath("Fire/Smoke:emitting")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Fire/Smoke:emitting")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
@@ -266,22 +207,10 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Fire/Embers:emitting")
+tracks/1/path = NodePath("Fire/Smoke:emitting")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Fire/Smoke:emitting")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
@@ -307,33 +236,23 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.1516366, 0.022107601, -0.04
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.1401524, 0.0029806495, 1.2603314)
 
 [node name="Flames" type="GPUParticles3D" parent="Fire" unique_id=1739375785]
+cast_shadow = 0
 emitting = false
-amount = 16
+amount = 5
 lifetime = 1.5
+speed_scale = 7.53
 fixed_fps = 60
 process_material = SubResource("ParticleProcessMaterial_2pufl")
 draw_pass_1 = SubResource("QuadMesh_0qkjn")
 
-[node name="Embers" type="GPUParticles3D" parent="Fire" unique_id=1158639566]
-emitting = false
-amount = 20
-lifetime = 0.3
-explosiveness = 0.2
-fixed_fps = 60
-process_material = SubResource("ParticleProcessMaterial_vnfvh")
-draw_pass_1 = SubResource("PrismMesh_jbj1t")
-
 [node name="Smoke" type="GPUParticles3D" parent="Fire" unique_id=164763465]
 emitting = false
-amount = 50
+amount = 10
 lifetime = 2.0
+randomness = 0.74
 fixed_fps = 60
 process_material = SubResource("ParticleProcessMaterial_703c2")
 draw_pass_1 = SubResource("QuadMesh_bv1vg")
-
-[node name="OmniLight3D" type="OmniLight3D" parent="Fire" unique_id=141087152]
-light_color = Color(0.807552, 0.52633, 0, 1)
-light_energy = 0.8
 
 [node name="Area3D" type="Area3D" parent="." unique_id=1555825994]
 monitorable = false
