@@ -13,6 +13,7 @@ size = Vector3(29, 11, 26)
 script = ExtResource("1_rs3ab")
 
 [node name="Sprite3D" type="Sprite3D" parent="." unique_id=1295813858]
+unique_name_in_owner = true
 transform = Transform3D(1.3524282, 0, 0, 0, 1.3524282, 0, 0, 0, 1, 0, 0, 0)
 texture = ExtResource("2_32iyl")
 
