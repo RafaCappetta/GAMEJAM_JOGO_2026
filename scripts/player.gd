@@ -58,7 +58,7 @@ var side = ""
 var tween: Tween
 var dash_velocity = 0
 
-var eletric_punch = false
+var eletric_punch = 0
 
 func _ready() -> void:
 	add_to_group("Player")
@@ -124,12 +124,12 @@ func _physics_process(delta: float) -> void:
 		%dash_cooldown.start()
 		can_dash = false
 		
-	if Input.is_action_just_pressed("soco") and eletric_punch:
+	if Input.is_action_just_pressed("soco") and eletric_punch > 0:
 		%soco_hitbox.global_transform.basis = %camera.global_transform.basis
 		%soco_hitbox.monitoring = true
 		%soco_timer.start()
 		%animacao.play("soco")
-		eletric_punch = false
+		eletric_punch -= 1
 
 	var input_dir := Input.get_vector("left", "right", "up", "down")
 	var direction := (head.transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
@@ -206,9 +206,10 @@ func head_bobbing(time_bob):
 	pos.x = cos(time_bob * BOB_FREQUENCY / 2) * BOB_AMPLITUDE
 	return pos
 
-func get_hit(damage, dir, knockback):
+func get_hit(damage):
 	life -= damage
-	velocity += dir * knockback
+	if life <= 0:
+		get_tree().change_scene_to_file("res://scenes/gameover.tscn")
 
 func _on_dash_cooldown_timeout() -> void:
 	can_dash = true
@@ -231,3 +232,9 @@ func get_side_wall(collision_point):
 		return "LEFT"
 	else:
 		return "CENTER"
+    
+func _on_soco_hitbox_area_entered(area: Area3D) -> void:
+	if area.is_in_group("Bullet"):
+		print("PARRY")
+		%Parry_light.parry()
+		area.parry = true

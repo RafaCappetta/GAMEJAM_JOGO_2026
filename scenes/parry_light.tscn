@@ -1,0 +1,23 @@
+[gd_scene format=3 uid="uid://mwe4xlg0ssao"]
+
+[ext_resource type="Script" uid="uid://dlgu5igs4msaq" path="res://scripts/parry_light.gd" id="1_c0iqr"]
+
+[node name="Parry_light" type="CanvasLayer" unique_id=1626237249]
+script = ExtResource("1_c0iqr")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=959294040]
+unique_name_in_owner = true
+modulate = Color(1, 1, 1, 0)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="Timer" type="Timer" parent="." unique_id=1205272589]
+unique_name_in_owner = true
+wait_time = 0.1
+one_shot = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

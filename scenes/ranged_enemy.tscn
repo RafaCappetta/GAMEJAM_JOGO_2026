@@ -1,0 +1,41 @@
+[gd_scene format=3 uid="uid://cguvt81kq4lf4"]
+
+[ext_resource type="Script" uid="uid://vh351n2cyb7i" path="res://scripts/ranged_enemy.gd" id="1_rs3ab"]
+[ext_resource type="Texture2D" uid="uid://5hqm75305x6u" path="res://icon.svg" id="2_32iyl"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_u2kgh"]
+size = Vector3(1.8506851, 1.7597961, 0.9242554)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_g4v7s"]
+size = Vector3(29, 11, 26)
+
+[node name="Ranged_enemy" type="CharacterBody3D" unique_id=968935609 groups=["Enemy"]]
+script = ExtResource("1_rs3ab")
+
+[node name="Sprite3D" type="Sprite3D" parent="." unique_id=1295813858]
+unique_name_in_owner = true
+transform = Transform3D(1.3524282, 0, 0, 0, 1.3524282, 0, 0, 0, 1, 0, 0, 0)
+texture = ExtResource("2_32iyl")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1033620247]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.006778717, 0.0010223389, -0.037872314)
+shape = SubResource("BoxShape3D_u2kgh")
+
+[node name="vision" type="Area3D" parent="." unique_id=550100598]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="vision" unique_id=2037879027]
+transform = Transform3D(1.3161478, 0, 0, 0, 1, 0, 0, 0, 1.6592989, 0, 2, 0.5)
+shape = SubResource("BoxShape3D_g4v7s")
+
+[node name="shoot_cooldown" type="Timer" parent="." unique_id=1722105456]
+unique_name_in_owner = true
+
+[node name="RayCast3D" type="RayCast3D" parent="." unique_id=1955550953]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0.30574858, 0.278373)
+
+[node name="aim" type="Node3D" parent="." unique_id=1592538743]
+unique_name_in_owner = true
+
+[connection signal="body_entered" from="vision" to="." method="_on_vision_body_entered"]
+[connection signal="body_exited" from="vision" to="." method="_on_vision_body_exited"]
+[connection signal="timeout" from="shoot_cooldown" to="." method="_on_shoot_cooldown_timeout"]
