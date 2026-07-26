@@ -5,6 +5,15 @@ signal animation_ended
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	var sounds = ["res://resources/vfx/explosion_sound/boom2.wav",
+	"res://resources/vfx/explosion_sound/boom3.wav",
+	"res://resources/vfx/explosion_sound/boom4.wav",
+	"res://resources/vfx/explosion_sound/boom5.wav",
+	"res://resources/vfx/explosion_sound/boom6.wav",
+	]
+	var sound = load(sounds[randi_range(0, 4)])
+	$AudioStreamPlayer3D.stream = sound
+	$AudioStreamPlayer3D.play()
 	pass # Replace with function body.
 
 
