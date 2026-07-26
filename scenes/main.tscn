@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://c3gwe4kot4sym" path="res://scripts/main.gd" id="1_ya4ey"]
 [ext_resource type="PackedScene" uid="uid://c5adiqgkhro40" path="res://scenes/player.tscn" id="2_0wfyh"]
+[ext_resource type="PackedScene" uid="uid://xf3hb78gvnpq" path="res://scenes/punch_powerup.tscn" id="3_chjal"]
 [ext_resource type="PackedScene" uid="uid://ljsnc6ag8e6f" path="res://scenes/buildings/building.tscn" id="3_ya4ey"]
 [ext_resource type="PackedScene" uid="uid://2ut2r6jtuiki" path="res://scenes/Heli.tscn" id="7_85g3d"]
 [ext_resource type="PackedScene" uid="uid://bh6qerynut3ux" path="res://scenes/large_building.tscn" id="7_ya4ey"]
@@ -227,6 +228,9 @@ material = SubResource("StandardMaterial3D_upktl")
 [node name="Player" parent="." unique_id=99861014 instance=ExtResource("2_0wfyh")]
 unique_name_in_owner = true
 transform = Transform3D(0.99970627, 0, 0.024235269, 0, 1, 0, -0.024235269, 0, 0.99970627, 19.637821, 48.241096, 44.764793)
+
+[node name="item_test3D" parent="." unique_id=1613466998 instance=ExtResource("3_chjal")]
+transform = Transform3D(0.9997072, 0, 0.02423529, 0, 1, 0, -0.02423529, 0, 0.9997072, 19.637815, 30.599651, 66.09126)
 
 [node name="Node3D" type="Node3D" parent="." unique_id=713710218]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 0, 0)
