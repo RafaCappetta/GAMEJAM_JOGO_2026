@@ -10,6 +10,12 @@
 [ext_resource type="Texture2D" uid="uid://h6cmx8ugciji" path="res://assets/images/Rostos.png" id="7_fjrip"]
 [ext_resource type="Texture2D" uid="uid://dj7j1sg4w2dr3" path="res://assets/images/Moldura.png" id="8_smehm"]
 [ext_resource type="PackedScene" uid="uid://mwe4xlg0ssao" path="res://scenes/parry_light.tscn" id="10_y4r1p"]
+[ext_resource type="AudioStream" uid="uid://bwhnn8kxqxq1h" path="res://assets/sounds/pulo.wav" id="11_qfm1y"]
+[ext_resource type="AudioStream" uid="uid://ufwyao4ejkii" path="res://assets/sounds/corrida.wav" id="12_fulsm"]
+[ext_resource type="AudioStream" uid="uid://5qrpidvwemak" path="res://assets/sounds/dash.wav" id="13_4r5pv"]
+[ext_resource type="AudioStream" uid="uid://bxy2bxwqimgwl" path="res://assets/sounds/parry.wav" id="15_i4ail"]
+[ext_resource type="AudioStream" uid="uid://b0vxmxv7t0p1t" path="res://assets/sounds/tomadano.wav" id="16_a38lo"]
+[ext_resource type="AudioStream" uid="uid://ckjiex1kx4b4g" path="res://assets/sounds/Socorelampago.wav" id="17_4ni07"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_ij1v8"]
 
@@ -209,6 +215,32 @@ theme_override_colors/font_color = Color(1, 0, 0, 1)
 
 [node name="Parry_light" parent="." unique_id=1626237249 instance=ExtResource("10_y4r1p")]
 unique_name_in_owner = true
+
+[node name="Pulo" type="AudioStreamPlayer" parent="." unique_id=911682290]
+unique_name_in_owner = true
+stream = ExtResource("11_qfm1y")
+volume_db = -5.0
+
+[node name="Corrida" type="AudioStreamPlayer" parent="." unique_id=1498835997]
+unique_name_in_owner = true
+stream = ExtResource("12_fulsm")
+
+[node name="Dash" type="AudioStreamPlayer" parent="." unique_id=856400505]
+unique_name_in_owner = true
+stream = ExtResource("13_4r5pv")
+
+[node name="Parry" type="AudioStreamPlayer" parent="." unique_id=298924097]
+unique_name_in_owner = true
+stream = ExtResource("15_i4ail")
+
+[node name="Tomadano" type="AudioStreamPlayer" parent="." unique_id=1167166688]
+unique_name_in_owner = true
+stream = ExtResource("16_a38lo")
+
+[node name="Socorelampago" type="AudioStreamPlayer" parent="." unique_id=28605146]
+unique_name_in_owner = true
+stream = ExtResource("17_4ni07")
+volume_db = -2.0
 
 [connection signal="area_entered" from="soco_hitbox" to="." method="_on_soco_hitbox_area_entered"]
 [connection signal="body_entered" from="soco_hitbox" to="." method="_on_soco_hitbox_body_entered"]

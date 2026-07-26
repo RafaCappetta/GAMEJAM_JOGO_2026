@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://xf3hb78gvnpq" path="res://scenes/item_test_3d.tscn" id="4_74lek"]
 [ext_resource type="PackedScene" uid="uid://bo0yb04jnt3qx" path="res://scenes/enemy.tscn" id="5_j5jx5"]
 [ext_resource type="PackedScene" uid="uid://cguvt81kq4lf4" path="res://scenes/ranged_enemy.tscn" id="6_lpvoh"]
+[ext_resource type="AudioStream" uid="uid://csthge2pyb1ol" path="res://assets/musics/fase1vaporwave.ogg" id="7_at5dv"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_errlg"]
 sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
@@ -88,3 +89,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 3, -3)
 [node name="Pause_menu" parent="." unique_id=677972992 instance=ExtResource("2_bl13t")]
 unique_name_in_owner = true
 visible = false
+
+[node name="Fase1Vaporwave" type="AudioStreamPlayer" parent="." unique_id=489759989]
+stream = ExtResource("7_at5dv")
+volume_db = -10.0
+autoplay = true
+parameters/looping = true

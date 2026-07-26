@@ -34,9 +34,17 @@ func get_hit(damage):
 	var tween = create_tween()
 	tween.tween_property(%Sprite3D, "modulate", Color.RED, 0.0)
 	tween.tween_property($Sprite3D, "modulate", Color.WHITE, 0.0).set_delay(0.2)
+	tween.tween_property(%Sprite3D2, "modulate", Color.RED, 0.0)
+	tween.tween_property($Sprite3D2, "modulate", Color.WHITE, 0.0).set_delay(0.2)
 	if life <= 0:
 		queue_free()
 
 func _on_shoot_cooldown_timeout() -> void:
+	%Sprite3D.frame = 1
 	bullet_instance = bullet.instantiate()
 	add_child(bullet_instance)
+	%ProjetilRelampago.play()
+	%shoot_anim.start()
+
+func _on_shoot_anim_timeout() -> void:
+	%Sprite3D.frame = 0

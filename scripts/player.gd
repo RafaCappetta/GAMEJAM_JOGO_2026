@@ -95,12 +95,14 @@ func _physics_process(delta: float) -> void:
 
 	if Input.is_action_just_pressed("jump") and is_on_floor():
 		velocity.y = JUMP_VELOCITY
+		%Pulo.play()
 		
 	if not is_on_floor():
 		if can_double_jump:
 			if Input.is_action_just_pressed("ui_accept"):
 				velocity.y = JUMP_VELOCITY
 				can_double_jump = false
+				%Pulo.play()
 		
 		wallrun_delay = clamp(wallrun_delay - delta, 0, wallrun_delay_default)
 		
@@ -121,6 +123,7 @@ func _physics_process(delta: float) -> void:
 		
 	if Input.is_action_just_pressed("dash") and can_dash:
 		dash_velocity = DASH
+		%Dash.play()
 		if tween:
 			tween.stop()
 		tween = create_tween()
@@ -156,14 +159,21 @@ func _physics_process(delta: float) -> void:
 		%soco_hitbox.monitoring = true
 		%soco_timer.start()
 		%animacao.play("soco")
+		%Socorelampago.play()
 		eletric_punch -= 1
 
 	var input_dir := Input.get_vector("left", "right", "up", "down")
 	var direction := (head.transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
 	if direction:
+		if is_on_floor():
+			if not %Corrida.playing:
+				%Corrida.play()
+		else:
+			%Corrida.stop()
 		velocity.x = direction.x * (total_speed + dash_velocity)
 		velocity.z = direction.z * (total_speed + dash_velocity)
 	else:
+		%Corrida.stop()
 		velocity.x = move_toward(velocity.x, 0, total_speed)
 		velocity.z = move_toward(velocity.z, 0, total_speed)
 		
@@ -235,6 +245,7 @@ func head_bobbing(time_bob):
 
 func get_hit(damage):
 	life -= damage
+	%Tomadano.play()
 	if life <= 0:
 		get_tree().change_scene_to_file("res://scenes/gameover.tscn")
 
@@ -262,6 +273,7 @@ func get_side_wall(collision_point):
 	
 func _on_soco_hitbox_area_entered(area: Area3D) -> void:
 	if area.is_in_group("Bullet"):
+		%Parry.play()
 		print("PARRY")
 		%Parry_light.parry()
 		area.parry = true
