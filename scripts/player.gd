@@ -57,6 +57,7 @@ var can_wallrun = false
 var wallrun_delay = 0.2
 @onready var wallrun_delay_default = wallrun_delay
 var wallrun_time_exceeded = false
+var wallrun_powerup = false
 
 """To know if is Wallrunning"""
 var is_wallrunning
@@ -116,7 +117,7 @@ func _physics_process(delta: float) -> void:
 		
 		wallrun_delay = clamp(wallrun_delay - delta, 0, wallrun_delay_default)
 		
-		if wallrun_delay == 0 and not wallrun_time_exceeded:
+		if wallrun_powerup and wallrun_delay == 0 and not wallrun_time_exceeded:
 			can_wallrun = true
 		
 	elif is_on_floor():
