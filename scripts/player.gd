@@ -22,6 +22,7 @@ const TOUGH_DASH = 200
 var can_tough_dash = false
 var carregando_tough_dash = false
 
+
 const DASH = 100
 var can_dash = true
 
@@ -49,6 +50,7 @@ const FOV_CHANGE = 1.5
 var can_wallrun = false
 var wallrun_delay = 0.2
 @onready var wallrun_delay_default = wallrun_delay
+var wallrun_time_exceeded = false
 
 """To know if is Wallrunning"""
 var is_wallrunning
@@ -66,6 +68,7 @@ var eletric_punch = 0
 
 func _ready() -> void:
 	add_to_group("Player")
+	%Tough_dash_hitbox.monitoring = false
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 
 func _unhandled_input(event: InputEvent) -> void:
@@ -106,7 +109,7 @@ func _physics_process(delta: float) -> void:
 		
 		wallrun_delay = clamp(wallrun_delay - delta, 0, wallrun_delay_default)
 		
-		if wallrun_delay == 0:
+		if wallrun_delay == 0 and not wallrun_time_exceeded:
 			can_wallrun = true
 		
 	elif is_on_floor():
@@ -114,6 +117,7 @@ func _physics_process(delta: float) -> void:
 		is_wallrunning = false
 		can_wallrun = false
 		wallrun_delay = wallrun_delay_default
+		wallrun_time_exceeded = false
 		
 	if Input.is_action_pressed("run"):
 		total_speed = SPEED + RUN_SPEED
@@ -205,6 +209,9 @@ func _physics_process(delta: float) -> void:
 			"""Enable Wallrunning"""
 			is_wallrunning = true
 			
+			if %Wallrun_timer.is_stopped():
+				%Wallrun_timer.start()
+			
 			"""Set side to a string, telling which side of player the wall is"""
 			side = get_side_wall(collision.get_position())
 			
@@ -214,6 +221,8 @@ func _physics_process(delta: float) -> void:
 		
 		else:
 			is_wallrunning = false
+			%Wallrun_timer.stop()
+			wallrun_time_exceeded = false
 	
 	"""Tilt the view"""
 	if is_wallrunning:
@@ -288,3 +297,8 @@ func _on_tough_dash_hits_timeout() -> void:
 func _on_tough_dash_hitbox_body_entered(body: Node3D) -> void:
 	if body.is_in_group("Enemy"):
 		body.get_hit(tough_dash_damage)
+
+func _on_wallrun_timer_timeout() -> void:
+	is_wallrunning = false
+	can_wallrun = false
+	wallrun_time_exceeded = true
