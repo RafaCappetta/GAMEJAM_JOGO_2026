@@ -9,6 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://bovkm17gp47t6" path="res://assets/images/Soco.png" id="6_y4r1p"]
 [ext_resource type="Texture2D" uid="uid://h6cmx8ugciji" path="res://assets/images/Rostos.png" id="7_fjrip"]
 [ext_resource type="Texture2D" uid="uid://dj7j1sg4w2dr3" path="res://assets/images/Moldura.png" id="8_smehm"]
+[ext_resource type="PackedScene" uid="uid://mwe4xlg0ssao" path="res://scenes/parry_light.tscn" id="10_y4r1p"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_ij1v8"]
 
@@ -178,6 +179,10 @@ offset_right = 63.0
 offset_bottom = 418.0
 theme_override_colors/font_color = Color(1, 0, 0, 1)
 
+[node name="Parry_light" parent="." unique_id=1626237249 instance=ExtResource("10_y4r1p")]
+unique_name_in_owner = true
+
+[connection signal="area_entered" from="soco_hitbox" to="." method="_on_soco_hitbox_area_entered"]
 [connection signal="body_entered" from="soco_hitbox" to="." method="_on_soco_hitbox_body_entered"]
 [connection signal="timeout" from="dash_cooldown" to="." method="_on_dash_cooldown_timeout"]
 [connection signal="timeout" from="soco_timer" to="." method="_on_soco_timer_timeout"]

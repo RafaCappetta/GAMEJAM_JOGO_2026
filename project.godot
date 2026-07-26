@@ -23,6 +23,7 @@ window/stretch/aspect="expand"
 
 Player="Jogador"
 Enemy=""
+Bullet=""
 
 [gui]
 

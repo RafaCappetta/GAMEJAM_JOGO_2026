@@ -1,6 +1,6 @@
 extends CharacterBody3D
 
-@export var life = 60
+@export var life = 70
 
 var alert = false
 const TURN_SPEED = 2
@@ -31,6 +31,9 @@ func _process(delta: float) -> void:
 		
 func get_hit(damage):
 	life -= damage
+	var tween = create_tween()
+	tween.tween_property(%Sprite3D, "modulate", Color.RED, 0.0)
+	tween.tween_property($Sprite3D, "modulate", Color.WHITE, 0.0).set_delay(0.2)
 	if life <= 0:
 		queue_free()
 

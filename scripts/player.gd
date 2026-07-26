@@ -37,7 +37,7 @@ const FOV_CHANGE = 1.5
 var tween: Tween
 var dash_velocity = 0
 
-var eletric_punch = false
+var eletric_punch = 0
 
 func _ready() -> void:
 	add_to_group("Player")
@@ -93,12 +93,12 @@ func _physics_process(delta: float) -> void:
 		%dash_cooldown.start()
 		can_dash = false
 		
-	if Input.is_action_just_pressed("soco") and eletric_punch:
+	if Input.is_action_just_pressed("soco") and eletric_punch > 0:
 		%soco_hitbox.global_transform.basis = %camera.global_transform.basis
 		%soco_hitbox.monitoring = true
 		%soco_timer.start()
 		%animacao.play("soco")
-		eletric_punch = false
+		eletric_punch -= 1
 
 	var input_dir := Input.get_vector("left", "right", "up", "down")
 	var direction := (head.transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
@@ -138,3 +138,9 @@ func _on_soco_timer_timeout() -> void:
 func _on_soco_hitbox_body_entered(body: Node3D) -> void:
 	if body.is_in_group("Enemy"):
 		body.get_hit(punch_damage)
+
+func _on_soco_hitbox_area_entered(area: Area3D) -> void:
+	if area.is_in_group("Bullet"):
+		print("PARRY")
+		%Parry_light.parry()
+		area.parry = true
