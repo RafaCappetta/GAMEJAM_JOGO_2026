@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://c3gwe4kot4sym" path="res://scripts/main.gd" id="1_ya4ey"]
 [ext_resource type="PackedScene" uid="uid://c5adiqgkhro40" path="res://scenes/player.tscn" id="2_0wfyh"]
+[ext_resource type="PackedScene" uid="uid://xf3hb78gvnpq" path="res://scenes/punch_powerup.tscn" id="3_chjal"]
 [ext_resource type="PackedScene" uid="uid://ljsnc6ag8e6f" path="res://scenes/buildings/building.tscn" id="3_ya4ey"]
 [ext_resource type="PackedScene" uid="uid://2ut2r6jtuiki" path="res://scenes/Heli.tscn" id="7_85g3d"]
 [ext_resource type="PackedScene" uid="uid://bh6qerynut3ux" path="res://scenes/large_building.tscn" id="7_ya4ey"]
@@ -13,16 +14,16 @@
 [ext_resource type="PackedScene" uid="uid://dhg4v4ukgfa5b" path="res://assets/buildings/Modern House.glb" id="11_ya4ey"]
 [ext_resource type="PackedScene" uid="uid://b2akfit6axr5g" path="res://assets/modelstreets/road-crossroad-path.glb" id="13_2wyq8"]
 [ext_resource type="PackedScene" uid="uid://dveftpj2ytq0" path="res://scenes/pause_menu.tscn" id="13_trceg"]
-[ext_resource type="PackedScene" uid="uid://cyjqbqjtoi28b" path="res://assets/modelscity/building-skyscraper-e.glb" id="14_a8y0u"]
-[ext_resource type="PackedScene" uid="uid://ci7lnh3f6nbqv" path="res://assets/modelscity/building-l.glb" id="15_jbj1t"]
-[ext_resource type="PackedScene" uid="uid://3mg2q0uamdyw" path="res://assets/modelscity/detail-parasol-b.glb" id="16_dp3eg"]
-[ext_resource type="PackedScene" uid="uid://bwiq07krwyn81" path="res://assets/modelscity/building-k.glb" id="16_muem4"]
-[ext_resource type="PackedScene" uid="uid://7ydk0ss3g7ka" path="res://assets/modelscity/detail-overhang-wide.glb" id="17_0ld40"]
-[ext_resource type="PackedScene" uid="uid://duhjwa28a75s6" path="res://assets/modelscity/building-d.glb" id="17_muem4"]
-[ext_resource type="PackedScene" uid="uid://bshdwtvx44b8m" path="res://assets/modelscity/building-i.glb" id="20_gqmmt"]
-[ext_resource type="PackedScene" uid="uid://cg5l6ged3qe08" path="res://assets/modelscity/building-j.glb" id="21_pm3ni"]
-[ext_resource type="PackedScene" uid="uid://b1iefm7gdvt12" path="res://assets/modelscity/building-skyscraper-d.glb" id="21_yc10j"]
-[ext_resource type="PackedScene" uid="uid://dfncwj6eru4b8" path="res://assets/modelscity/building-n.glb" id="22_jscy8"]
+[ext_resource type="PackedScene" uid="uid://jb8bb86groo" path="res://assets/modelscity/building-skyscraper-e.glb" id="14_a8y0u"]
+[ext_resource type="PackedScene" uid="uid://cm0q00pqy07k3" path="res://assets/modelscity/building-l.glb" id="15_jbj1t"]
+[ext_resource type="PackedScene" uid="uid://50nesudbauud" path="res://assets/modelscity/detail-parasol-b.glb" id="16_dp3eg"]
+[ext_resource type="PackedScene" uid="uid://c3567ps48y7wb" path="res://assets/modelscity/building-k.glb" id="16_muem4"]
+[ext_resource type="PackedScene" uid="uid://c40gqj30wwmee" path="res://assets/modelscity/detail-overhang-wide.glb" id="17_0ld40"]
+[ext_resource type="PackedScene" uid="uid://c5r4dfhbyic3a" path="res://assets/modelscity/building-d.glb" id="17_muem4"]
+[ext_resource type="PackedScene" uid="uid://bmdjhawq75452" path="res://assets/modelscity/building-i.glb" id="20_gqmmt"]
+[ext_resource type="PackedScene" uid="uid://dvp2v7snrbtmw" path="res://assets/modelscity/building-j.glb" id="21_pm3ni"]
+[ext_resource type="PackedScene" uid="uid://36fxdcykxrjj" path="res://assets/modelscity/building-skyscraper-d.glb" id="21_yc10j"]
+[ext_resource type="PackedScene" uid="uid://ckaofhxeujrmo" path="res://assets/modelscity/building-n.glb" id="22_jscy8"]
 [ext_resource type="PackedScene" uid="uid://deplnf4dnfs3j" path="res://assets/modelstreets/road-crossing.glb" id="25_vxglm"]
 [ext_resource type="PackedScene" uid="uid://cxvx8d3vn7bus" path="res://assets/modelstreets/road-straight.glb" id="26_2f3dj"]
 [ext_resource type="PackedScene" uid="uid://ccvoii1h05lp1" path="res://assets/modelscity/ps1_style_retro_computer_station_-_low_poly.glb" id="26_2wyq8"]
@@ -204,6 +205,9 @@ material = SubResource("StandardMaterial3D_upktl")
 [node name="Player" parent="." unique_id=99861014 instance=ExtResource("2_0wfyh")]
 unique_name_in_owner = true
 transform = Transform3D(0.99970627, 0, 0.024235269, 0, 1, 0, -0.024235269, 0, 0.99970627, 19.637821, 48.241096, 44.764793)
+
+[node name="item_test3D" parent="." unique_id=1613466998 instance=ExtResource("3_chjal")]
+transform = Transform3D(0.9997072, 0, 0.02423529, 0, 1, 0, -0.02423529, 0, 0.9997072, 19.637815, 30.599651, 66.09126)
 
 [node name="Node3D" type="Node3D" parent="." unique_id=713710218]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 0, 0)
