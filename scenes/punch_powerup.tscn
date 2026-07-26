@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://xf3hb78gvnpq"]
 
-[ext_resource type="Script" uid="uid://ctc2umlwpvc5f" path="res://scripts/item_test_3d.gd" id="1_7b1qt"]
+[ext_resource type="Script" uid="uid://ctc2umlwpvc5f" path="res://scripts/punch_powerup.gd" id="1_7b1qt"]
 [ext_resource type="AudioStream" uid="uid://dipv07x8ayt58" path="res://assets/sounds/powerup.wav" id="2_qmj4o"]
 [ext_resource type="Texture2D" uid="uid://dgxmpbp1fia6i" path="res://assets/images/disquete_socao.png" id="2_twhak"]
 
