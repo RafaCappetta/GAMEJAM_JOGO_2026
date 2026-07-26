@@ -4,7 +4,7 @@ func _ready() -> void:
 	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 
 func _on_sim_pressed() -> void:
-	get_tree().change_scene_to_file("res://scenes/test.tscn")
+	get_tree().change_scene_to_file("res://scenes/loading.tscn")
 
 func _on_nao_pressed() -> void:
 	get_tree().quit()

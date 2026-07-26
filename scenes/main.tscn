@@ -11,7 +11,8 @@
 [ext_resource type="PackedScene" uid="uid://rfn5sw2fhvh4" path="res://scenes/house.tscn" id="10_eb6dy"]
 [ext_resource type="PackedScene" uid="uid://cval6hkq4y7ee" path="res://scenes/buildings/apartment.tscn" id="10_trceg"]
 [ext_resource type="Script" uid="uid://bjxnlhsjwy4xf" path="res://scenes/car_spawner.gd" id="10_ya4ey"]
-[ext_resource type="PackedScene" uid="uid://507hmg0ufhvo" path="res://assets/buildings/Modern House.glb" id="11_ya4ey"]
+[ext_resource type="PackedScene" uid="uid://dhg4v4ukgfa5b" path="res://assets/buildings/Modern House.glb" id="11_ya4ey"]
+[ext_resource type="PackedScene" uid="uid://dveftpj2ytq0" path="res://scenes/pause_menu.tscn" id="13_trceg"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_o6xl0"]
 sky_top_color = Color(0.36991724, 0.3687137, 0.867025, 1)
@@ -192,3 +193,7 @@ shape = SubResource("BoxShape3D_a8y0u")
 [node name="CollisionShape3D7" type="CollisionShape3D" parent="StaticBody3D2" unique_id=338842723]
 transform = Transform3D(-5.176789e-07, 0, 19.385077, 0, 11.843113, 0, -11.843113, 0, -8.473486e-07, -7.733268, -1.1692942, -2.4414368)
 shape = SubResource("BoxShape3D_muem4")
+
+[node name="Pause_menu" parent="." unique_id=677972992 instance=ExtResource("13_trceg")]
+unique_name_in_owner = true
+visible = false
