@@ -29,14 +29,24 @@ func get_hit(damage):
 	var tween = create_tween()
 	tween.tween_property(%Sprite3D, "modulate", Color.RED, 0.0)
 	tween.tween_property($Sprite3D, "modulate", Color.WHITE, 0.0).set_delay(0.2)
+	tween.tween_property(%Sprite3D2, "modulate", Color.RED, 0.0)
+	tween.tween_property($Sprite3D2, "modulate", Color.WHITE, 0.0).set_delay(0.2)
 	if life <= 0:
 		queue_free()
 
 func _on_gps_target_reached() -> void:
 	if can_attack:
 		player.get_hit(damage)
+		%Inimigolamina.play()
+		%Sprite3D.frame = 1
+		%Sprite3D2.hide()
 		can_attack = false
+		%atk_anim.start()
 		%atk_cooldown.start()
 
 func _on_atk_cooldown_timeout() -> void:
 	can_attack = true
+
+func _on_atk_anim_timeout() -> void:
+	%Sprite3D.frame = 0
+	%Sprite3D2.show()
